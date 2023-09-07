@@ -1,0 +1,934 @@
+<html>
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Limau Form Builder</title>    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/formio.full.min.css">
+    <style>
+      .field-wrapper {
+          display: flex
+      }
+
+      .field-wrapper--reverse {
+          flex-direction: row-reverse
+      }
+
+      .builder-component{
+          border:1px solid #dcdcdc;
+          padding: 0.5rem;
+      }
+     
+    </style>
+    <script src=js/bootstrap.bundle.min.js integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/src-min-noconflict/ace.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/css/ace.min.css">
+</head>
+<body>
+
+  
+<div class="row">
+    <div class="col-sm-8">
+      <h3 class="text-center text-muted">Form Builder</h3>
+      <div id="formio-w92c3r-wrapper"><div id="builder"><div class="formio builder row formbuilder">
+    <div class="col-xs-4 col-sm-3 col-md-2 formcomponents">
+      <div role="tablist" ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="builder-sidebar-e7ep995">
+    <input placeholder="Search field(s)" ref="sidebar-search" type="search" class="form-control builder-sidebar_search">
+      
+        <div ref="group-panel-basic" class="card form-builder-panel accordion-item">
+    <div id="heading-basic" class="card-header form-builder-group-header">
+      <h5 class="mb-0 mt-0 d-grid accordion-header">
+        <button ref="sidebar-anchor" aria-controls="group-basic" aria-expanded="true" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-basic" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+          Basic
+        </button>
+      </h5>
+    </div>
+    <div ref="sidebar-group" aria-labelledby="heading-basic" data-default="true" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse  show" id="group-basic">
+      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-basic">
+        
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Textbox" data-key="textfield" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-terminal bi bi-terminal"></i>
+              
+              Text Field
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Textarea" data-key="textarea" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-font bi bi-type"></i>
+              
+              Text Area
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Numberbox" data-key="number" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-hashtag bi bi-hash"></i>
+              
+              Number
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Password" data-key="password" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-asterisk bi bi-asterisk"></i>
+              
+              Password
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Checkbox" data-key="checkbox" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-check-square bi bi-check-square"></i>
+              
+              Checkbox
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="selectboxes" data-key="selectboxes" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-plus-square bi bi-ui-checks"></i>
+              
+              Select Boxes
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Select" data-key="select" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-th-list bi bi-menu-button-wide"></i>
+              
+              Select
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="radio" data-key="radio" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-dot-circle-o bi bi-ui-radios"></i>
+              
+              Radio
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Button" data-key="button" data-group="basic" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-stop bi bi-stop"></i>
+              
+              Button
+            </span>
+          
+          
+        
+      </div>
+    </div>
+  </div>
+  
+      
+        <div ref="group-panel-advanced" class="card form-builder-panel accordion-item">
+    <div id="heading-advanced" class="card-header form-builder-group-header">
+      <h5 class="mb-0 mt-0 d-grid accordion-header">
+        <button ref="sidebar-anchor" aria-controls="group-advanced" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-advanced" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+          Advanced
+        </button>
+      </h5>
+    </div>
+    <div ref="sidebar-group" aria-labelledby="heading-advanced" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-advanced">
+      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-advanced">
+        
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="email" data-key="email" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-at bi bi-at"></i>
+              
+              Email
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="url" data-key="url" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-link bi bi-link"></i>
+              
+              Url
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="phoneNumber" data-key="phoneNumber" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-phone-square bi bi-phone"></i>
+              
+              Phone Number
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="tags" data-key="tags" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-tags bi bi-tags"></i>
+              
+              Tags
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="address" data-key="address" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-home bi bi-house"></i>
+              
+              Address
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="datetime" data-key="datetime" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-calendar bi bi-calendar"></i>
+              
+              Date / Time
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="day" data-key="day" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-calendar bi bi-calendar"></i>
+              
+              Day
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="time" data-key="time" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-clock-o bi bi-clock"></i>
+              
+              Time
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="currency" data-key="currency" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-usd bi bi-currency-dollar"></i>
+              
+              Currency
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="survey" data-key="survey" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-list bi bi-list"></i>
+              
+              Survey
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="signature" data-key="signature" data-group="advanced" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-pencil bi bi-pencil"></i>
+              
+              Signature
+            </span>
+          
+          
+        
+      </div>
+    </div>
+  </div>
+  
+      
+        <div ref="group-panel-layout" class="card form-builder-panel accordion-item">
+    <div id="heading-layout" class="card-header form-builder-group-header">
+      <h5 class="mb-0 mt-0 d-grid accordion-header">
+        <button ref="sidebar-anchor" aria-controls="group-layout" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-layout" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+          Layout
+        </button>
+      </h5>
+    </div>
+    <div ref="sidebar-group" aria-labelledby="heading-layout" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-layout">
+      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-layout">
+        
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="htmlelement" data-key="htmlelement" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-code bi bi-code"></i>
+              
+              HTML Element
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="content" data-key="content" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-html5 bi bi-file-richtext"></i>
+              
+              Content
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="columns" data-key="columns" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-columns bi bi-layout-three-columns"></i>
+              
+              Columns
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="fieldset" data-key="fieldset" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-th-large bi bi-grid-fill"></i>
+              
+              Field Set
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="panel" data-key="panel" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-list-alt bi bi-window"></i>
+              
+              Panel
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="table" data-key="table" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-table bi bi-table"></i>
+              
+              Table
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="tabs" data-key="tabs" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-folder-o bi bi-folder"></i>
+              
+              Tabs
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="well" data-key="well" data-group="layout" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-square-o bi bi-square"></i>
+              
+              Well
+            </span>
+          
+          
+        
+      </div>
+    </div>
+  </div>
+  
+      
+        <div ref="group-panel-data" class="card form-builder-panel accordion-item">
+    <div id="heading-data" class="card-header form-builder-group-header">
+      <h5 class="mb-0 mt-0 d-grid accordion-header">
+        <button ref="sidebar-anchor" aria-controls="group-data" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-data" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+          Data
+        </button>
+      </h5>
+    </div>
+    <div ref="sidebar-group" aria-labelledby="heading-data" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-data">
+      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-data">
+        
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="hidden" data-key="hidden" data-group="data" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-user-secret bi bi-person-fill-slash"></i>
+              
+              Hidden
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="container" data-key="container" data-group="data" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-folder-open bi bi-folder2-open"></i>
+              
+              Container
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="datamap" data-key="datamap" data-group="data" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-th-list bi bi-menu-button-wide"></i>
+              
+              Data Map
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="datagrid" data-key="datagrid" data-group="data" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-th bi bi-grid-3x3-gap-fill"></i>
+              
+              Data Grid
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="editgrid" data-key="editgrid" data-group="data" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-tasks bi bi-view-stacked"></i>
+              
+              Edit Grid
+            </span>
+          
+          
+        
+      </div>
+    </div>
+  </div>
+  
+      
+        <div ref="group-panel-premium" class="card form-builder-panel accordion-item">
+    <div id="heading-premium" class="card-header form-builder-group-header">
+      <h5 class="mb-0 mt-0 d-grid accordion-header">
+        <button ref="sidebar-anchor" aria-controls="group-premium" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-premium" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+          Premium
+        </button>
+      </h5>
+    </div>
+    <div ref="sidebar-group" aria-labelledby="heading-premium" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-premium">
+      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-premium">
+        
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="recaptcha" data-key="recaptcha" data-group="premium" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-refresh bi bi-arrow-repeat"></i>
+              
+              reCAPTCHA
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="file" data-key="file" data-group="premium" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-file bi bi-file"></i>
+              
+              File
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="form" data-key="form" data-group="premium" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-wpforms bi bi-window-stack"></i>
+              
+              Nested Form
+            </span>
+          
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="custom" data-key="unknown" data-group="premium" ref="sidebar-component">
+              
+                <i style="margin-right: 5px;" class="fa fa-cubes bi bi-boxes"></i>
+              
+              Custom
+            </span>
+          
+          
+        
+      </div>
+    </div>
+  </div>
+  
+      
+  </div>
+  
+    </div>
+    <div ref="form" class="col-xs-8 col-sm-9 col-md-10 formarea">
+      <div ref="component" class="component-container">    
+        <div id="drop-container" name="drop-container" ref="container" class="dropzone builder-components drop-container builder-form">
+          <div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
+          Drag and Drop a form component
+          </div>
+          <div tabindex="-1" ref="dragComponent" class="builder-component">
+            
+              <div data-noattach="true" class="component-btn-group">
+                <div ref="removeComponent" class="btn btn-xxs btn-danger component-settings-button component-settings-button-remove" tabindex="-1" aria-label="Remove button. Click to remove component from the form" role="button">
+                  <i class="fa fa-remove bi bi-trash"></i>
+                </div>
+                <div ref="copyComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-copy" tabindex="-1" aria-label="Copy button. Click to copy component" role="button">
+                  <i class="fa fa-copy bi bi-back"></i>
+                </div>
+                <div ref="pasteComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-paste" tabindex="-1" aria-label="Paste below button. Click to paste component below the current component" role="button">
+                  <i class="fa fa-save bi bi-save"></i>
+                </div>
+                <div ref="editJson" class="btn btn-xxs btn-default component-settings-button component-settings-button-edit-json" tabindex="-1" aria-label="Edit json button. Click to edit json of the current component" role="button">
+                  <i class="fa fa-wrench bi bi-wrench"></i>
+                </div>
+                <div ref="moveComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-move" tabindex="-1" aria-label="Move button" role="button">
+                  <i class="fa fa-move bi bi-arrows-move"></i>
+                </div>
+                <div ref="editComponent" class="btn btn-xxs btn-secondary component-settings-button component-settings-button-edit" tabindex="-1" aria-label="Edit button. Click to open component settings modal window" role="button">
+                  <i class="fa fa-cog bi bi-gear"></i>
+                </div>
+              </div>
+            
+            <div ref="component1" class="mb-2 formio-form-group has-feedback formio-component formio-component-button formio-component-submit  mb-2 formio-form-group" id="erfy93e">
+            
+            
+          
+          
+          
+          <button lang="en" class="btn btn-primary btn-md" type="submit" name="data[submit]" ref="button">
+          
+          Submit
+          
+          
+          </button>
+          <div ref="buttonMessageContainer">
+            <span ref="buttonMessage" class="help-block"></span>
+          </div>
+          
+          
+            <div class="invalid-feedback" ref="messageContainer"></div>
+            
+          </div>
+          
+          </div>
+          
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  </div>
+  
+  
+</div>
+    </div>
+    <div class="col-sm-4">
+      <h3 class="text-center text-muted">Form JSON</h3>
+      <div id="form-json" style="height: 500px" class=" ace_editor ace_hidpi ace-tm"></div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
+          <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button id="btnRemove" ref="modal-remove" type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
+          <button id="btnCancel" ref="modal-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/components/base.js"></script>
+  <script src="js/components/editbase.js"></script>
+  <script src="js/components/textbox.js"></script>
+  <script src="js/components/select.js"></script>
+  <script src="js/components/checkbox.js"></script>
+  <script src="js/components/textarea.js"></script>
+  <script src="js/components/number.js"></script>
+  <script src="js/components/password.js"></script>
+  <script src="js/components/button.js"></script>
+  
+  <script>
+   
+    const modalBox = document.getElementById("myModal"); 
+    const modalTitle = document.getElementById("modalLongTitle"); 
+    const modalBody = document.querySelector(".modal-body");  
+    const closeModals = document.querySelectorAll('[data-dismiss="modal"]');
+    const editModalBox = new bootstrap.Modal(modalBox);
+    const btnRemove = document.getElementById("btnRemove"); 
+    const btnCancel = document.getElementById("btnCancel"); 
+    const btnSave = document.getElementById("btnSave"); 
+  
+    //const nodropElements = document.querySelectorAll(".no-drop");
+    const draggables = [...document.querySelectorAll(".draggable")];
+    const dropzones = [...document.querySelectorAll(".dropzone")];
+
+    var curMirrorElement;
+    var curZone;
+    var curEl;
+    var editor = ace.edit("form-json");
+    var formElementJsonConfig = [];
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      const mainContainer = document.querySelector('[ref="container"]');  
+      const mainContainerJson = {};
+      mainContainerJson["element-id"] = mainContainer.id;
+      mainContainerJson["element-group"] = "default"
+      mainContainerJson["element-version"] = "v1";
+      mainContainerJson["element-type"] = "container";
+      mainContainerJson["element-parent"] = "";
+      mainContainerJson["components"] = [];
+      formElementJsonConfig.push(mainContainerJson);
+
+      //editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/json");
+      editor.session.setUseWrapMode(true);
+      editor.setHighlightActiveLine(false);
+      
+      closeModals.forEach((close)=>{
+        close.addEventListener("click",(e)=>{
+          e.preventDefault();
+          const _mirror = document.querySelector(".drag-mirror");  
+          const buttonRef = e.target.getAttribute("ref");
+          if (_mirror.getAttribute("ref")==="sidebar-component"|| buttonRef=='modal-remove')
+          {
+            curZone.removeChild(_mirror);
+           
+          }
+          editModalBox.hide();
+          
+        });
+      });
+
+      btnSave.addEventListener("click", (e)=>{
+        e.preventDefault();
+        const _mirror = document.querySelector(".drag-mirror");  
+        if (_mirror)
+        {
+          if (curEl) curZone.removeChild(curEl);
+          btnModalSaveEventHandler(_mirror.dataset.type, _mirror);
+        }
+      
+      })
+
+     
+
+      draggables.forEach((draggable) => {
+        draggableHandler(draggable);
+
+      });
+
+      dropzones.forEach((zone) => {
+        zone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          let _mirror = document.querySelector(".drag-mirror");  
+          // console.log("dragover")
+          // console.log(_mirror)
+          if (!_mirror){     
+            
+            const targetEl  = document.querySelector(".drag-transit");
+
+            _mirror = targetEl.cloneNode(true);
+            _mirror.classList.add("drag-mirror");
+            _mirror.classList.remove("drag-transit");
+            // zone.appendChild(draggable);
+            const y = event.clientY;
+            const x = event.clientX;
+            const item = getReference(zone, _mirror, x,y);
+           
+            curMirrorElement = item;
+            zone.insertBefore(_mirror, item);
+            curZone=zone;
+            //if (targetEl.getAttribute("ref") ==='dragComponent') {targetEl.remove();}
+          }
+        });
+
+        zone.addEventListener("dragenter", (e) => {  
+         
+        });
+
+        zone.addEventListener("dragleave", (e) => {  
+          
+          const _mirror = document.querySelector(".drag-mirror");  
+          if (_mirror){   
+            const y = event.clientY;
+            const x = event.clientX;
+            const item = getReference(zone, _mirror, x,y);
+            if (item!=curMirrorElement && item!=_mirror)
+            {
+              curMirrorElement = "";
+              console.log("dragleave")
+              zone.removeChild(_mirror);
+            }
+            else
+            {
+              //console.log("item = currenshadow")
+            }
+          }
+        });
+
+        zone.addEventListener("drop", (e) => {
+          console.log("drop");
+          //curZone = zone;
+          elementDropped(e);  
+         
+        });
+
+      });
+      
+    });
+
+    //=========================================================================
+    //Event Listener Handler
+     //=========================================================================
+    draggableHandler=(draggable)=>
+    {
+      draggable.setAttribute('draggable', true);
+
+      draggable.addEventListener("dragstart", (e) => {
+        console.log("dragstart");
+        //console.log(e.target);
+        draggable.classList.add("drag-transit");        
+      });
+
+      draggable.addEventListener("dragend", (e) => {
+        console.log("dragend");
+        //console.log(e.target);
+        draggable.classList.remove("drag-transit");
+        elementDropped(e);
+        
+      });//dragend
+    }
+
+    dragComponentEventListeners=(el)=>
+    {      
+      //builderElementDragHandler(document.getElementById(el.id));
+
+      if (el.getAttribute("ref")==='dragComponent')
+      {
+        const becRemove = el.querySelector('[ref="removeComponent"]');      
+        becRemove.addEventListener("click", becRemoveEventHandler);
+
+        const becEdit = el.querySelector('[ref="editComponent"]');      
+        becEdit.addEventListener("click", becEditEventHandler);
+        draggableHandler(el);
+      }
+    }
+
+    becRemoveEventHandler=(e)=>{
+      const thisEl = e.target.closest('div.builder-component');
+      thisEl.remove();
+      formElementJsonConfig = removeJsonElement(formElementJsonConfig, "component-" + thisEl.id);
+      //console.log(formElementJsonConfig);
+      refreshEditor();
+    }
+
+    becEditEventHandler=(e)=>{
+      const thisEl = e.target.closest('div.builder-component');
+      const jsonConfig = getFormElementJsonConfig("component-" + thisEl.id);
+      thisEl.classList.add("drag-mirror");
+      thisEl.setAttribute("data-type", jsonConfig["element-type"])
+      const el = CreateInstance(jsonConfig["element-type"], JSON.stringify(jsonConfig));
+
+      modalTitle.innerHTML = `${el.group} - ${el.name} - ${el.version}`;
+      modalBody.innerHTML = '';
+      modalBody.appendChild(el.renderEditForm());
+      el.attachEditFormEvent();
+      
+      editModalBox.show();     
+    }
+
+    btnModalSaveEventHandler=(domElementType, curDomElement)=>{
+      const elementsWithRefInput = modalBox.querySelectorAll('[ref="input"]');
+
+      // Now you can work with the selected elements
+      const config = {};
+      for (const element of elementsWithRefInput) {          
+        const propName = element.dataset.property;
+       
+        if (element.type=='checkbox' && !element.checked)
+        {
+          continue;
+        }
+
+        const propNameBuilder = propName.split('-');
+        if (propNameBuilder.length>1)
+        {
+          let currentObj = config;
+          for(let i =0; i<propNameBuilder.length;i++)
+          {
+            const part = propNameBuilder[i];
+            if (!currentObj.hasOwnProperty(part)) {
+              currentObj[part]={};              
+            }   
+            if (i < propNameBuilder.length - 1) {
+                currentObj = currentObj[part];
+              }         
+          }
+
+          //currentObj = element.value;
+          //eval("config." + propNameBuilder.join(".") + "='" + element.value + "'");
+          //console.log(`config.${propNameBuilder.join(".")} = '${element.value}'`);
+          eval(`config.${propNameBuilder.join(".")} = '${element.value}'`);
+          
+          //console.log(config);
+        }
+        else{
+          //currentObj
+          config[propNameBuilder[0]] = element.value;
+        }
+       
+        //console.log(element.type + ":" + element.value );
+      }
+
+      //console.log(config)
+      config.formBuilderMode = true;
+            
+      const el =  CreateInstance(domElementType, JSON.stringify(config)); 
+
+      curZone.insertBefore(el.renderDomElement(), curDomElement);      
+      curZone.removeChild(curDomElement);
+     
+      //el.attachComponentEventListener();
+        //assign event to buildereditcomponents
+        //Prepare for Json
+      config["element-id"] = "component-" + el.elementId;
+      config["element-group"] = el.group;
+      config["element-version"] = el.version;
+      config["element-type"] = el.config.type;
+
+      const newDomEl = document.getElementById(el.elementId)
+      config["element-parent"] = newDomEl.closest('[ref="container"]').id;
+      formElementJsonConfig.push(config);
+    
+      //console.log(formElementJsonConfig);
+      dragComponentEventListeners(newDomEl);
+
+      refreshEditor();
+
+      editModalBox.hide();
+    }
+
+    elementDropped=(e)=>{
+      const _mirror = document.querySelector(".drag-mirror");
+      hide(document.querySelector(".drag-and-drop-alert"));
+      if (_mirror){     
+      
+        const componentType = _mirror.getAttribute("ref");        
+        if (componentType==='sidebar-component'){          
+          
+          const el = CreateInstance(_mirror.dataset.type, '{"formBuilderMode":true}');
+          el.Test();
+          modalTitle.innerHTML = `${el.group} - ${el.name} - ${el.version}`;
+          modalBody.innerHTML = '';
+          modalBody.appendChild(el.renderEditForm());
+          el.attachEditFormEvent();
+          editModalBox.show();     
+        }
+        else{
+          const element = document.querySelector(`#${_mirror.id}:not(.drag-mirror)`);
+          console.log(element)
+          curZone.insertBefore(element, _mirror);
+          _mirror.remove();
+          // //console.log(element)
+          // _mirror.classList.remove("drag-mirror");
+          // element.remove();
+          // dragComponentEventListeners(_mirror)
+        }
+        refreshEditor();
+      }
+    }
+    //=========================================================================
+    //End Event Listener Handler
+     //=========================================================================
+
+
+    function getReference (dropTarget, target, x, y) {
+      const horizontal = false;
+      var reference = outside();
+      //console.log(reference)
+      return reference;
+
+      function outside () { // slower, but able to figure out any position
+        var len = dropTarget.children.length;
+        var i;
+        var el;
+        var rect;
+        for (i = 0; i < len; i++) {
+          el = dropTarget.children[i];
+          rect = el.getBoundingClientRect();
+          //if (horizontal && (rect.left + rect.width / 2) > x) { return el; }
+          if ((rect.left + rect.width / 2) > x && (rect.top + rect.height / 2) > y) { return el; }
+        }
+        return null;
+      }
+    }
+
+    function CreateInstance(classNameString, json)
+    {
+      var obj = new (eval(classNameString))(json);
+      return obj
+    }
+
+    function removeJsonElement(jsonComponent, elementId) {
+      //console.log(elementId)
+      if (Array.isArray(jsonComponent)) {
+        for (let i = 0; i < jsonComponent.length; i++) {
+          const com = jsonComponent[i];
+          if (com["element-type"] === 'Column') {
+            com["columns"].forEach((e) => {
+              e["components"] = removeJsonElement(e["components"], elementId);
+            });
+          } else {
+            if (com["element-id"] === elementId) {
+              jsonComponent.splice(i, 1);
+              // console.log("removeJsonElement- remove")
+              // console.log(jsonComponent)
+              i--; // Decrement i to account for the removed element
+            }
+          }
+        }
+      }
+      // console.log("removeJsonElement- final")
+      // console.log(jsonComponent)
+      return jsonComponent;
+    }
+    
+    function getFormElementJsonConfig(elementId) {
+      const jsonObj = formElementJsonConfig;
+      if (Array.isArray(jsonObj)) {
+        for (let i = 0; i < jsonObj.length; i++) {
+          if (jsonObj[i]["element-id"]===elementId)
+          {
+            return jsonObj[i];
+          }
+        }
+        return null;
+      }     
+      return null;
+    }
+
+    function refreshEditor()
+    { 
+      //Get first element - Main Container
+      const mainContainer = document.getElementById(formElementJsonConfig[0]["element-id"]);
+      
+      const formElementJsonRep = formElementJsonConfig[0];
+      formElementJsonRep.components = getAllChildElementsRecursive(mainContainer);
+      editor.setValue(JSON.stringify(formElementJsonRep, null, '\t'));
+
+      //console.log(formElementJsonConfig)
+    }
+
+    function getAllChildElementsRecursive(parentElement, result = []) {
+      var children = parentElement.children;
+      //var children = parentElement.querySelectorAll(".builder-component,.drag-container");
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        const domComponent = child.querySelector('[ref="component"]');
+        if (domComponent){
+          const jsonComponent = getFormElementJsonConfig(domComponent.id);
+          if (jsonComponent["element-type"]==="Column")
+          {
+            //Handle Column
+            //Loop domComponent children =>column
+            // {
+            //   "label": "Columns",
+            //   "columns": [
+            //     {
+            //       "components": [
+            //         {
+            //           "label": "Text Field",
+            //           "applyMaskOn": "change",
+            //           "tableView": true,
+            //           "key": "textField",
+            //           "type": "textfield",
+            //           "input": true
+            //         }
+            //       ]
+            //     },
+            //     {
+            //       "components": []
+            //     }
+            //   ],
+            //   "key": "columns",
+            //   "type": "columns",
+            //   "input": false,
+            //   "tableView": false
+            // }
+
+          }
+          else
+          {
+            result.push(jsonComponent);
+          }
+        }
+        
+        getAllChildElementsRecursive(child, result);
+      }
+      
+      return result;
+    }
+
+    var show = function (elem) {
+      elem.style.display = 'block';
+    };
+
+    // Hide an element
+    var hide = function (elem) {
+      elem.style.display = 'none';
+    };
+    isNullOrEmpty=function (value) {
+      return value === null || value === undefined || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0);
+    };
+  </script>
+
+
+</body>
+</html>
