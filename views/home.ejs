@@ -116,6 +116,11 @@
         -moz-box-shadow: 0 0 10px 1px rgba(48,113,169,.6);
         box-shadow: 0 0 10px 1px rgba(48,113,169,.6)
     }
+    .col-drop-container{
+      padding: 100px;
+      border:dotted 2px #e8e8e8;
+    }
+    
     </style>
     <script src=js/bootstrap.bundle.min.js integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/src-min-noconflict/ace.min.js"></script>
@@ -142,8 +147,13 @@
     </div>
     <div ref="sidebar-group" aria-labelledby="heading-basic" data-default="true" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse  show" id="group-basic">
       <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-basic">
-        
-          
+      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Header" data-key="header" data-group="basic" ref="sidebar-component">
+        <i style="margin-right: 5px;" class="fa fa-tag bi bi-tag"></i>Header
+      </span>
+      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Column" data-key="column" data-group="basic" ref="sidebar-component">
+        <i style="margin-right: 5px;" class="fa fa-tag bi bi-tag"></i>Column
+      </span>
+
             <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Textbox" data-key="textfield" data-group="basic" ref="sidebar-component">
               
                 <i style="margin-right: 5px;" class="fa fa-terminal bi bi-terminal"></i>
@@ -549,6 +559,8 @@
   <script src="js/components/button.js"></script>
   <script src="js/components/radio.js"></script>
   <script src="js/components/occupation.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/components/column.js"></script>
   <script>
    
     const modalBox = document.getElementById("myModal"); 
@@ -631,68 +643,28 @@
           const editComponent = editComponents[0];
           //if (curEl) curZone.removeChild(curEl);
           btnModalSaveEventHandler(editComponent.dataset.type, editComponent);
-        }
-      
+        }      
       })
 
       draggables.forEach((draggable) => {
         draggableHandler(draggable);
-
       });
 
       dropzones.forEach((zone) => {
         zone.addEventListener("dragover", (e) => {
-          e.preventDefault();
-          let _mirror = document.querySelector(".drag-mirror");  
-          // console.log("dragover")
-          // console.log(_mirror)
-          if (!_mirror){     
-            
-            const targetEl  = document.querySelector(".drag-transit");
-
-            _mirror = targetEl.cloneNode(true);
-            _mirror.classList.add("drag-mirror");
-            _mirror.classList.remove("drag-transit");
-            // zone.appendChild(draggable);
-            const y = event.clientY;
-            const x = event.clientX;
-            const item = getReference(zone, _mirror, x,y);
-           
-            curMirrorElement = item;
-            zone.insertBefore(_mirror, item);
-            curZone=zone;
-            //if (targetEl.getAttribute("ref") ==='dragComponent') {targetEl.remove();}
-          }
+          dropZoneDragoverEventHandler(zone, e);
         });
 
-        zone.addEventListener("dragenter", (e) => {  
-         
-        });
+        zone.addEventListener("dragenter", (e) => { });
 
         zone.addEventListener("dragleave", (e) => {  
-          
-          const _mirror = document.querySelector(".drag-mirror");  
-          if (_mirror){   
-            const y = event.clientY;
-            const x = event.clientX;
-            const item = getReference(zone, _mirror, x,y);
-            if (item!=curMirrorElement && item!=_mirror)
-            {
-              curMirrorElement = "";
-              console.log("dragleave")
-              zone.removeChild(_mirror);
-            }
-            else
-            {
-              //console.log("item = currenshadow")
-            }
-          }
+          dropZoneDragleaveEventHandler(zone, e);
         });
 
         zone.addEventListener("drop", (e) => {
           console.log("drop");
           //curZone = zone;
-          elementDropped(e);  
+          elementDropped(zone, e);  
          
         });
 
@@ -831,7 +803,51 @@
       editModalBox.hide();
     }
 
-    elementDropped=(e)=>{
+    dropZoneDragoverEventHandler=(zone, e)=>{
+      console.log(zone)
+      e.preventDefault();
+      let _mirror = document.querySelector(".drag-mirror");  
+      // console.log("dragover")
+      // console.log(_mirror)
+      if (!_mirror){     
+        
+        const targetEl  = document.querySelector(".drag-transit");
+
+        _mirror = targetEl.cloneNode(true);
+        _mirror.classList.add("drag-mirror");
+        _mirror.classList.remove("drag-transit");
+        // zone.appendChild(draggable);
+        const y = event.clientY;
+        const x = event.clientX;
+        const item = getReference(zone, _mirror, x,y);
+        
+        curMirrorElement = item;
+        zone.insertBefore(_mirror, item);
+        curZone=zone;
+        //if (targetEl.getAttribute("ref") ==='dragComponent') {targetEl.remove();}
+      }
+    }
+
+    dropZoneDragleaveEventHandler=(zone, e)=>{
+      e.preventDefault();
+      const _mirror = document.querySelector(".drag-mirror");  
+      if (_mirror){   
+        const y = event.clientY;
+        const x = event.clientX;
+        const item = getReference(zone, _mirror, x,y);
+        if (item!=curMirrorElement && item!=_mirror)
+        {
+          curMirrorElement = "";
+          console.log("dragleave")
+          zone.removeChild(_mirror);
+        }
+        else
+        {
+          //console.log("item = currenshadow")
+        }
+      }
+    }
+    elementDropped=(zone, e)=>{
       const _mirror = document.querySelector(".drag-mirror");
       hide(document.querySelector(".drag-and-drop-alert"));
       if (_mirror){     
