@@ -15,7 +15,7 @@ class Password extends Base
         if (config.propertyName === void 0) { config.propertyName = ''; }
         if (config.type === void 0) { config.type = 'Password'; }
         if (config.label === void 0) { config.label = 'My Password'; }
-        if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+        if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
         //if (this.isPropExists(config, 'labelPosition')) { config.labelPosition = 'top'; }
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
@@ -70,7 +70,7 @@ class Password extends Base
                 "propertyName":"description",
                 "label": "Descriptions (Optional)",
                 "description": "Description for the Password", 
-                "type": "Textarea",
+                "type": "Textbox",
                 "value": this.config.description
               },
               {

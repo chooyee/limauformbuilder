@@ -14,7 +14,7 @@ class Checkbox extends Base
         if (config.propertyName === void 0) { config.propertyName = 'Checkbox'; }
         if (config.type === void 0) { config.type = 'Checkbox'; }
         if (config.label === void 0) { config.label = 'My Checkbox'; }
-        if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+        if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
         if (config.value === void 0) { config.value = ""; }
@@ -33,7 +33,7 @@ class Checkbox extends Base
               {
                 "propertyName":"label",
                 "label": "Label",
-                "labelPosition":"left-left",
+                "labelPosition":"Left-Left",
                 "description": "Enter the label the checkbox",     
                 "validate": {
                   "mandatory": true,
@@ -107,7 +107,7 @@ class Checkbox extends Base
         const inputEl = this.renderRawElement(config, elementId);        
         divInputGroup.appendChild(inputEl);
 
-        const chkLabel = this.createElement("label", {"class":"form-check-label", "for":"flexCheckDefault"});
+        const chkLabel = this.createElement("label", {"class":"form-check-label", "for":`${this.name}-${elementId}`});
         const span = this.createElement("span");
         span.innerHTML = config.label;
         chkLabel.appendChild(span);

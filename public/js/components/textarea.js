@@ -14,7 +14,7 @@ class Textarea extends Base
         if (config.propertyName === void 0) { config.propertyName = 'textarea'; }
         if (config.type === void 0) { config.type = 'Textarea'; }
         if (config.label === void 0) { config.label = 'My Text Area'; }
-        if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+        if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
         if (config.rows === void 0) { config.rows = 3; }
@@ -71,7 +71,7 @@ class Textarea extends Base
                 "propertyName":"description",
                 "label": "Descriptions (Optional)",
                 "description": "Description for text area", 
-                "type": "Textarea",
+                "type": "Textbox",
                 "value": this.config.description
               },
               {

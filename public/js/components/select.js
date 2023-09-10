@@ -14,7 +14,7 @@ class Select extends Base
 		if (config.propertyName === void 0) { config.propertyName = 'Select'; }
 		if (config.type === void 0) { config.type = 'Select'; }
 		if (config.label === void 0) { config.label = 'My Dropdown'; }
-		if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+		if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
 		if (config.labelWidth === void 0) { config.labelWidth = 30; }
 		if (config.labelMargin === void 0) { config.labelMargin = 3; }
 		if (config.options === void 0) { config.options = ["option 1", "option 2", "option 3"]; }
@@ -66,6 +66,7 @@ class Select extends Base
 				{
 				  "propertyName":"description",
 				  "label": "Descriptions",
+				  "description": "Description for the element", 
 				  "type": "Textbox",
 				  "value": this.config.description
 				}
@@ -150,11 +151,12 @@ class Select extends Base
 	}
 
 	renderRawElement = (config, elementId)=>{
+		const inputElementId = `${this.name}-${elementId}`;
 		const propertyName = config.propertyName;
 		const placeholder = config.placeholder;
 		let options = config.options;
 		const defaultValue = config.value;
-		const inputEl = this.createElement("select", {"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"form-control", "type":"text", "ref":"input"});
+		const inputEl = this.createElement("select", {"data-property":propertyName,"id":inputElementId, "class":"form-control", "type":"text", "ref":"input"});
 		
 		if (!this.isNullOrEmpty(config.propertyId))
 		{
@@ -176,6 +178,26 @@ class Select extends Base
 				inputEl.add(new Option(option[key],key));  
 			}
 		});
+
+		
+		// if (!this.isNullOrEmpty(config.render))
+		// {			
+		// 	if (config.render.options=='all_elements_on_form')
+		// 	{				
+		// 		inputEl.add(new Option("Not selected", ""));
+
+		// 		const mainContainer = document.getElementById(formElementJsonConfig[0]["element-id"]);				
+		// 		const allComponents = [...mainContainer.querySelectorAll('[ref="component"]')];
+				
+		// 		allComponents.forEach((component)=>{
+		// 			const label = component.querySelector("label");
+		// 			const elementType = component.getAttribute("data-component-type");
+		// 			const elementId = label.getAttribute("for");
+		// 			inputEl.add(new Option(`${label.innerHTML} (${elementType})`, elementId));  
+					
+		// 		})
+		// 	}
+		// }
 
 		if (!this.isNullOrEmpty(placeholder))
 		{

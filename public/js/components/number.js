@@ -15,7 +15,7 @@ class Numberbox extends Base
 		if (config.propertyName === void 0) { config.propertyName = ''; }
 		if (config.type === void 0) { config.type = 'Numberbox'; }
 		if (config.label === void 0) { config.label = 'My Number box'; }
-		if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+		if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
 		//if (this.isPropExists(config, 'labelPosition')) { config.labelPosition = 'top'; }
 		if (config.labelWidth === void 0) { config.labelWidth = 30; }
 		if (config.labelMargin === void 0) { config.labelMargin = 3; }
@@ -70,7 +70,7 @@ class Numberbox extends Base
 				"propertyName":"description",
 				"label": "Descriptions (Optional)",
 				"description": "Description for the number field", 
-				"type": "Textarea",
+				"type": "Textbox",
 				"value": this.config.description
 			  },
 			  {

@@ -15,7 +15,7 @@ class Textbox extends Base
         if (config.propertyName === void 0) { config.propertyName = ''; }
         if (config.type === void 0) { config.type = 'Textbox'; }
         if (config.label === void 0) { config.label = 'My Textbox'; }
-        if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+        if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
         //if (this.isPropExists(config, 'labelPosition')) { config.labelPosition = 'top'; }
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
@@ -34,6 +34,16 @@ class Textbox extends Base
         };
         
       
+        if (config.visibility === void 0) {
+          config.visibility = {};
+
+          if (config.visibility.simple === void 0) {
+            config.visibility.simple = {};
+            config.visibility.simple.target = "";
+            config.visibility.simple.value = "";
+          };
+        };
+
         if (config.formBuilderMode === void 0) { config.formBuilderMode = false; }
         //this.editFormJson = this.getEditFormJson();
     }
@@ -70,7 +80,7 @@ class Textbox extends Base
                 "propertyName":"description",
                 "label": "Descriptions (Optional)",
                 "description": "Description for the textbox", 
-                "type": "Textarea",
+                "type": "Textbox",
                 "value": this.config.description
               },
               {
@@ -152,6 +162,28 @@ class Textbox extends Base
                 "propertyName":"value",
                 "label": "Default Value",
                 "value": this.config.value, 
+                "type": "Textbox"
+              }
+            ]
+          },
+          {
+            "tabLabel": "Visibility",
+            "tabId":"visibility",
+            "components": [
+              {
+                "propertyName":"visibility-simple-target",
+                "label": "Visibile only when element",
+                "value": this.config.visibility.simple.target, 
+                "type": "Select",
+                "options":[],
+                "render":{
+                  "options":"all_elements_on_form"
+                }
+              },
+              {
+                "propertyName":"visibility-simple-value",
+                "label": "has the value of",
+                "value": this.config.visibility.simple.value, 
                 "type": "Textbox"
               }
             ]

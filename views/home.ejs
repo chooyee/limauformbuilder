@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/formio.full.min.css">
+    <!-- <link rel="stylesheet" href="css/formio.full.min.css"> -->
     <style>
       .field-wrapper {
           display: flex
@@ -16,12 +16,106 @@
       .field-wrapper--reverse {
           flex-direction: row-reverse
       }
-
+      .builder-sidebar_scroll {
+          position: sticky;
+          top: 15px;
+          max-height: 100vh;
+          overflow-y: auto;
+      }
       .builder-component{
           border:1px solid #dcdcdc;
           padding: 0.5rem;
       }
-     
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+      }
+      .autocomplete {
+        position: relative;
+        display: inline-block;
+      }
+
+      .autocomplete-items {
+        position: absolute;
+        z-index: 99;
+        top: 100%;
+        left: 0;
+        right: 0;
+      }
+      .formcomponents .formcomponent {
+        text-align: left;
+        padding: 5px 5px 5px 8px;
+        margin-top: .2rem;
+        font-size: .8em;
+        line-height: 1.2;
+        border-radius: .3em
+    }
+    .drag-container {
+        padding: 10px;
+        border: dotted 2px #e8e8e8
+    }
+
+    .drag-container:hover {
+        cursor: move;
+        border: dotted 2px #ccc
+    }
+    .drop-container{
+      min-height: 100px;
+      border: 1px dashed  #dcdcdc;
+      border-radius: 25px;
+      padding:1rem;
+    }
+
+    .component-btn-group {
+        display: flex;
+        flex-direction: row-reverse;
+        position: absolute;
+        right: 0;
+        z-index: 1000;
+        margin-top: -2px
+    }
+
+    .builder-component {
+        position: relative;
+        min-height: 15px;
+        margin-bottom: 15px
+    }
+
+    .builder-component .formio-component-htmlelement {
+        border: dotted 2px #e8e8e8
+    }
+
+    .builder-component .formio-component-htmlelement [ref=html]:empty:before {
+        content: "HTML Content";
+        color: #aaa
+    }
+
+    .builder-component:not(:hover) .component-btn-group {
+        display: none
+    }
+
+    .builder-group-button {
+        background-color: transparent;
+        white-space: normal;
+        text-align: left
+    }
+
+    .form-builder-group-header {
+        padding: 0
+    }
+
+    .component-btn-group .component-settings-button {
+        float: right;
+        z-index: 1001;
+        margin: 4px 4px 0 0;
+        z-index: 1001;
+        -webkit-box-shadow: 0 0 10px 1px rgba(48,113,169,.6);
+        -moz-box-shadow: 0 0 10px 1px rgba(48,113,169,.6);
+        box-shadow: 0 0 10px 1px rgba(48,113,169,.6)
+    }
     </style>
     <script src=js/bootstrap.bundle.min.js integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/src-min-noconflict/ace.min.js"></script>
@@ -33,10 +127,10 @@
 <div class="row">
     <div class="col-sm-8">
       <h3 class="text-center text-muted">Form Builder</h3>
-      <div id="formio-w92c3r-wrapper"><div id="builder"><div class="formio builder row formbuilder">
+      <div id="w92c3r-wrapper"><div id="builder"><div class="builder row formbuilder">
     <div class="col-xs-4 col-sm-3 col-md-2 formcomponents">
       <div role="tablist" ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="builder-sidebar-e7ep995">
-    <input placeholder="Search field(s)" ref="sidebar-search" type="search" class="form-control builder-sidebar_search">
+    <!-- <input placeholder="Search field(s)" ref="sidebar-search" type="search" class="form-control builder-sidebar_search"> -->
       
         <div ref="group-panel-basic" class="card form-builder-panel accordion-item">
     <div id="heading-basic" class="card-header form-builder-group-header">
@@ -85,7 +179,7 @@
               Checkbox
             </span>
           
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="selectboxes" data-key="selectboxes" data-group="basic" ref="sidebar-component">
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Occupation" data-key="selectboxes" data-group="basic" ref="sidebar-component">
               
                 <i style="margin-right: 5px;" class="fa fa-plus-square bi bi-ui-checks"></i>
               
@@ -99,7 +193,7 @@
               Select
             </span>
           
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="radio" data-key="radio" data-group="basic" ref="sidebar-component">
+            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Radio" data-key="radio" data-group="basic" ref="sidebar-component">
               
                 <i style="margin-right: 5px;" class="fa fa-dot-circle-o bi bi-ui-radios"></i>
               
@@ -401,51 +495,6 @@
           <div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
           Drag and Drop a form component
           </div>
-          <div tabindex="-1" ref="dragComponent" class="builder-component">
-            
-              <div data-noattach="true" class="component-btn-group">
-                <div ref="removeComponent" class="btn btn-xxs btn-danger component-settings-button component-settings-button-remove" tabindex="-1" aria-label="Remove button. Click to remove component from the form" role="button">
-                  <i class="fa fa-remove bi bi-trash"></i>
-                </div>
-                <div ref="copyComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-copy" tabindex="-1" aria-label="Copy button. Click to copy component" role="button">
-                  <i class="fa fa-copy bi bi-back"></i>
-                </div>
-                <div ref="pasteComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-paste" tabindex="-1" aria-label="Paste below button. Click to paste component below the current component" role="button">
-                  <i class="fa fa-save bi bi-save"></i>
-                </div>
-                <div ref="editJson" class="btn btn-xxs btn-default component-settings-button component-settings-button-edit-json" tabindex="-1" aria-label="Edit json button. Click to edit json of the current component" role="button">
-                  <i class="fa fa-wrench bi bi-wrench"></i>
-                </div>
-                <div ref="moveComponent" class="btn btn-xxs btn-default component-settings-button component-settings-button-move" tabindex="-1" aria-label="Move button" role="button">
-                  <i class="fa fa-move bi bi-arrows-move"></i>
-                </div>
-                <div ref="editComponent" class="btn btn-xxs btn-secondary component-settings-button component-settings-button-edit" tabindex="-1" aria-label="Edit button. Click to open component settings modal window" role="button">
-                  <i class="fa fa-cog bi bi-gear"></i>
-                </div>
-              </div>
-            
-            <div ref="component1" class="mb-2 formio-form-group has-feedback formio-component formio-component-button formio-component-submit  mb-2 formio-form-group" id="erfy93e">
-            
-            
-          
-          
-          
-          <button lang="en" class="btn btn-primary btn-md" type="submit" name="data[submit]" ref="button">
-          
-          Submit
-          
-          
-          </button>
-          <div ref="buttonMessageContainer">
-            <span ref="buttonMessage" class="help-block"></span>
-          </div>
-          
-          
-            <div class="invalid-feedback" ref="messageContainer"></div>
-            
-          </div>
-          
-          </div>
           
         </div>
       </div>
@@ -462,7 +511,11 @@
       <div id="form-json" style="height: 500px" class=" ace_editor ace_hidpi ace-tm"></div>
   </div>
 
-
+  <!-- <footer class="footer bg-dark">
+    <div class="container py-3">
+      <span class="text-light">Bootstrap 4 fixed footer content here.</span>
+    </div>
+  </footer> -->
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -484,6 +537,7 @@
       </div>
     </div>
   </div>
+  <script src="js/common/fetch.js"></script>
   <script src="js/components/base.js"></script>
   <script src="js/components/editbase.js"></script>
   <script src="js/components/textbox.js"></script>
@@ -493,7 +547,8 @@
   <script src="js/components/number.js"></script>
   <script src="js/components/password.js"></script>
   <script src="js/components/button.js"></script>
-  
+  <script src="js/components/radio.js"></script>
+  <script src="js/components/occupation.js"></script>
   <script>
    
     const modalBox = document.getElementById("myModal"); 
@@ -511,7 +566,6 @@
 
     var curMirrorElement;
     var curZone;
-    var curEl;
     var editor = ace.edit("form-json");
     var formElementJsonConfig = [];
     
@@ -531,15 +585,38 @@
       editor.session.setUseWrapMode(true);
       editor.setHighlightActiveLine(false);
       
+      modalBox.addEventListener('hidden.bs.modal', function (event) {
+        // do something...
+        const _component_edit_mode = document.querySelector(".modal-edit-mode");
+        if (_component_edit_mode){  
+          _component_edit_mode.classList.remove("modal-edit-mode");
+        }
+      })
+
       closeModals.forEach((close)=>{
         close.addEventListener("click",(e)=>{
           e.preventDefault();
           const _mirror = document.querySelector(".drag-mirror");  
-          const buttonRef = e.target.getAttribute("ref");
-          if (_mirror.getAttribute("ref")==="sidebar-component"|| buttonRef=='modal-remove')
-          {
-            curZone.removeChild(_mirror);
-           
+          if (_mirror){
+            const buttonRef = e.target.getAttribute("ref");
+            if (_mirror.getAttribute("ref")==="sidebar-component"|| buttonRef=='modal-remove')
+            {
+              //curZone.removeChild(_mirror);
+              _mirror.remove();
+            
+            }
+          }
+
+          const _component_edit_mode = document.querySelector(".modal-edit-mode");  
+          console.log(_component_edit_mode)
+          if (_component_edit_mode){
+            const buttonRef = e.target.getAttribute("ref");
+            if (buttonRef=='modal-remove')
+            {
+              //curZone.removeChild(_component_edit_mode);
+              _component_edit_mode.remove();
+            
+            }
           }
           editModalBox.hide();
           
@@ -548,16 +625,15 @@
 
       btnSave.addEventListener("click", (e)=>{
         e.preventDefault();
-        const _mirror = document.querySelector(".drag-mirror");  
-        if (_mirror)
+        let editComponents = document.querySelectorAll(".drag-mirror,div.modal-edit-mode"); 
+        if (editComponents.length>0)
         {
-          if (curEl) curZone.removeChild(curEl);
-          btnModalSaveEventHandler(_mirror.dataset.type, _mirror);
+          const editComponent = editComponents[0];
+          //if (curEl) curZone.removeChild(curEl);
+          btnModalSaveEventHandler(editComponent.dataset.type, editComponent);
         }
       
       })
-
-     
 
       draggables.forEach((draggable) => {
         draggableHandler(draggable);
@@ -672,7 +748,7 @@
     becEditEventHandler=(e)=>{
       const thisEl = e.target.closest('div.builder-component');
       const jsonConfig = getFormElementJsonConfig("component-" + thisEl.id);
-      thisEl.classList.add("drag-mirror");
+      thisEl.classList.add("modal-edit-mode");
       thisEl.setAttribute("data-type", jsonConfig["element-type"])
       const el = CreateInstance(jsonConfig["element-type"], JSON.stringify(jsonConfig));
 
@@ -773,7 +849,7 @@
         }
         else{
           const element = document.querySelector(`#${_mirror.id}:not(.drag-mirror)`);
-          console.log(element)
+          //console.log(element)
           curZone.insertBefore(element, _mirror);
           _mirror.remove();
           // //console.log(element)

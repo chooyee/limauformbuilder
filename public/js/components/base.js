@@ -106,8 +106,8 @@ class Base
 	  const divRemoveComponent = this.createElement("div",{"ref":"removeComponent", "class":"btn btn-xxs btn-danger component-settings-button component-settings-button-remove", "tabindex":"-1", "aria-label":"Remove button. Click to remove component from the form", "role":"button"});
 	  divRemoveComponent.appendChild(this.createElement("i",{"class":"fa fa-remove bi bi-trash"}));
 
-	  const divEditComponent = this.createElement("div",{"ref":"editComponent", "class":"btn btn-xxs btn-secondary component-settings-button component-settings-button-edit", "tabindex":"-1", "aria-label":"Edit button. Click to open component from the form", "role":"button"});
-	  divEditComponent.appendChild(this.createElement("i",{"class":"fa fa-cog bi bi-gear"}));
+	  const divEditComponent = this.createElement("div",{"ref":"editComponent", "class":"btn btn-xxs btn-success component-settings-button component-settings-button-edit", "tabindex":"-1", "aria-label":"Edit button. Click to open component from the form", "role":"button"});
+	  divEditComponent.appendChild(this.createElement("i",{"class":"fa fa-cog bi bi-sliders"}));
 
 	  divGroup.appendChild(divRemoveComponent);
 	  divGroup.appendChild(divEditComponent);
@@ -143,7 +143,7 @@ class Base
 
 		//div component
 		//<div ref="component" class="mb-2 formio-form-group has-feedback formio-component formio-component-textfield formio-component-textField limau, ice" id="enuyfr7">
-		let componentDiv = this.createElement('div',{"id": "component-" + elementId,"ref":"component", "class":"mb-2"});
+		let componentDiv = this.createElement('div',{"id": "component-" + elementId,"ref":"component", "class":"mb-2", "data-component-type":this.config.type});
 
 		div.appendChild(componentDiv);
 	  

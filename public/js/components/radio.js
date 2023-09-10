@@ -14,7 +14,7 @@ class Radio extends Base
 		if (config.propertyName === void 0) { config.propertyName = ''; }
 		if (config.type === void 0) { config.type = 'Radio'; }
 		if (config.label === void 0) { config.label = 'My Radio'; }
-		if (config.labelPosition === void 0) { config.labelPosition = 'top'; }
+		if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
 		if (config.labelWidth === void 0) { config.labelWidth = 30; }
 		if (config.labelMargin === void 0) { config.labelMargin = 3; }
 		if (config.options === void 0) { config.options = ["option 1", "option 2", "option 3"]; }
@@ -61,6 +61,7 @@ class Radio extends Base
 				{
 				  "propertyName":"description",
 				  "label": "Descriptions",
+				  "description": "Description for the element", 
 				  "type": "Textbox",
 				  "value": this.config.description
 				}
@@ -146,10 +147,9 @@ class Radio extends Base
 
 	renderRawElement = (config, elementId)=>{
 		const propertyName = config.propertyName;
-		const placeholder = config.placeholder;
 		let options = config.options;
 		const defaultValue = config.value;
-		const inputEl = this.createElement("select", {"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"form-control", "type":"text", "ref":"input"});
+		const inputEl = this.createElement("div", {"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"form-radio radio", "ref":"radioGroup"});
 		
 		if (!this.isNullOrEmpty(config.propertyId))
 		{
@@ -161,22 +161,30 @@ class Radio extends Base
 			options = options.split("\n");
 		}
 
+		let radioRequired = "";
+		if (this.isPropExists(config,"validation"))
+		{		
+			if (this.isPropExists(config.validation, "mandatory"))
+			{
+				//inputEl.classList.add("mandatory");
+				radioRequired = "required";
+			}
+		}
+
 		options.forEach(option => {
 			if (this.trueTypeOf(option)=="string")
 			{
-				inputEl.add(new Option(option, option));  
+				//inputEl.add(new Option(option, option));  
+				inputEl.appendChild(this.renderRadioComponent(option, option, elementId, radioRequired));
 			}
 			else{
 				const key = Object.keys(option)[0];
-				inputEl.add(new Option(option[key],key));  
+				//inputEl.add(new Option(option[key],key));  
+				inputEl.appendChild(this.renderRadioComponent(option[key], key, elementId, radioRequired));
 			}
 		});
 
-		if (!this.isNullOrEmpty(placeholder))
-		{
-			inputEl.setAttribute("placeholder", placeholder);
-		}
-
+		
 		if (this.isPropExists(config,"validation"))
 		{		
 			if (this.isPropExists(config.validation, "mandatory"))
@@ -189,52 +197,49 @@ class Radio extends Base
 		return inputEl;
 	}
 
+	renderRadioComponent=(label, optionValue, elementId, radioRequired)=>{
+		const divRadioWrapper = this.createElement("div", {"class":"radio form-check", "ref":"wrapper"});
+
+		const radioOptionId = `Radio-${elementId}-${this.getShortUUID()}`;
+		//<input role="radio" id="egz1rha-ehjhwoh--apple" value="apple" lang="en" class="form-check-input" type="radio" name="data[radio][egz1rha-ehjhwoh]" ref="input">
+		const radio = this.createElement("input", {"id":radioOptionId,"name":`radio[${elementId}]`, "value":optionValue, "class":"form-check-input", "type": "radio","ref":"input"});
+	
+		if (!this.isNullOrEmpty(radioRequired))
+		{
+			radio.setAttribute("required", true);
+		}
+		//<label for="egz1rha-ehjhwoh--apple" class="form-check-label label-position-right"><span>apple</span></label>
+		const labelElement = this.createElement("label",{"for":radioOptionId, "class":"form-check-label label-position-right"});
+		const span = this.createElement("span",{});
+		span.innerHTML = label;
+
+		divRadioWrapper.appendChild(radio);
+		divRadioWrapper.appendChild(labelElement);
+		labelElement.appendChild(span);
+
+		return divRadioWrapper;
+
+	}
+
 	setDefaultOption(selectElement, defaultValue) {
-	 
-	  	if (selectElement) {
-			for (let i = 0; i < selectElement.options.length; i++) {
-				const option = selectElement.options[i];
-				if (option.value === defaultValue) {
-					option.selected = true;
-					option.setAttribute("selected", true);
-					break;
-				}
+
+		const allRadios = selectElement.querySelectorAll("[ref='input']");
+		allRadios.forEach((radio)=>{
+			if (radio.value===defaultValue)
+			{
+				radio.checked=true;
+				radio.setAttribute("checked", "checked");
 			}
-	  	}
+			else{
+				radio.removeAttribute("checked");
+			}
+		})
 	}
 
 	//========================================================================
 	//Custom Event Handler
 	//=========================================================================
-	static editFormDefaultValueListener=function(listenEvent, targetElementId, sourceElementId){
-	 
-		const targetElement = document.querySelector(`[data-id="${targetElementId}"]`);
-		//if (targetElement==null) throw `[data-id=${ev.target}] not found! Did renderEditForm execute before attach events?`;
-		const sourceElement = document.querySelector(`[data-id="${sourceElementId}"]`);
-		//if (sourceElement==null) throw `[data-id=${component.propertyId}] not found! Did renderEditForm execute before attach events?`;
-		Select.removeListeners(targetElement, listenEvent);
-		
-		targetElement.addEventListener(listenEvent, function(e){
-			let options = e.target.value;
-			sourceElement.innerHTML = "";
-			sourceElement.add(new Option("No default", "No default"));
-			if (Select.trueTypeOf(options)=="string")
-			{
-				options = options.split("\n");
-			}
-			options.forEach(option => {
-				if (Select.trueTypeOf(option)=="string")
-				{
-					sourceElement.add(new Option(option, option));  
-				}
-				else{
-					const key = Object.keys(option)[0];
-					sourceElement.add(new Option(option[key],key));  
-				}
-			});
-		});
-  }
-
+	
 
 
 }
