@@ -11,9 +11,10 @@ class Column extends Base
           this.config =  {};       
      
         let config = this.config;
+		if (config.columns === void 0) {config.columns = [];}
         if (config.propertyName === void 0) { config.propertyName = 'Column'; }
         if (config.type === void 0) { config.type = 'Column'; }
-        if (config.columns === void 0) { config.columns = 3; }
+        if (config.numOfColumns === void 0) { config.numOfColumns = 3; }
         if (config.formBuilderMode === void 0) { config.formBuilderMode = false; }
         
     }
@@ -38,11 +39,11 @@ class Column extends Base
                 "type": "Select"
               },
 			  {
-                "propertyName":"columns",
-                "label": "Columns",
+                "propertyName":"numOfColumns",
+                "label": "Number of Columns",
                 "description": "Set number of columns", 
                 "options":["1","2","3","4","5","6","7","8","9","10"],
-                "value": this.config.columns,           
+                "value": this.config.numOfColumns,           
                 "type": "Select"
               }
             ]
@@ -98,21 +99,32 @@ class Column extends Base
 
     renderRawElement = (config, elementId)=>{
 		const propertyName = config.propertyName;
-		const container =  this.createElement("div", {"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"container", "ref":"input"});
+		const componentId = `${this.name}-${elementId}`;
+		const container =  this.createElement("div", {"data-property":propertyName,"id":componentId, "class":"container", "ref":"input"});
 		
 		if (!this.isNullOrEmpty(config.propertyId))
 		{
 			container.setAttribute("data-id", config.propertyId);
 		}
       
-        const row =  this.createElement("div", {"class":"row"});
+        const row =  this.createElement("div", {"id":`row-${elementId}-0`,"data-parent":componentId, "class":"row", "ref":"row"});
 
-		for (let i =0;i<config.columns;i++)
+		config.columns = [];
+		for (let i =0;i<config.numOfColumns;i++)
 		{
-			const col = this.createElement("div", {"class":"col"});
-			const colDropContainer = this.createElement("div", {"class":"col-drop-container builder-components"});
+			const colContainerId = `col-${elementId}-${i}`;
+			const col = this.createElement("div", {"class":"col","data-parent":componentId, "ref":"col"});
+			const colDropContainer = this.createElement("div", {"id":colContainerId, "data-parent":componentId, "class":"col-drop-container builder-components","ref":"container", "data-col":i});
+			//<div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
+			//Drag and Drop a form component
+			//</div>
+			const div = this.createElement("div",{"data-position":"0", "data-noattach":"true", "role":"alert", "style":"text-align:center;", "class":"builder-component drag-and-drop-alert alert alert-info no-drop"})
+			div.innerHTML = "Drag and Drop a form component";
+			colDropContainer.appendChild(div);
 			col.appendChild(colDropContainer);
 			row.appendChild(col);
+
+			config.columns.push({"components":[]});
 		}
 		
 		container.appendChild(row);

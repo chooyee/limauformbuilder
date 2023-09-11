@@ -138,6 +138,9 @@ class Base
 		//Edit component
 		//div.appendChild(this.getBuilderEditComponent());
 		if (config.formBuilderMode){
+			const dragGrouper = this.createElement("div",{"class":"drag-helper"});
+			dragGrouper.appendChild(this.createElement("i",{"class":"fa fa-arrows-move bi bi-arrows-move"}));
+			div.appendChild(dragGrouper);
 			div.appendChild(this.renderBuilderEditComponent());
 		}
 
