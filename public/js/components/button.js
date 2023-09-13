@@ -1,3 +1,4 @@
+
 class Button extends Base
 {    
     constructor(jsonConfig) {   
@@ -50,6 +51,47 @@ class Button extends Base
                 "value":this.config.buttonLabel,           
                 "type": "Textbox"
               },
+              {
+                "propertyName":"buttonClass",
+                "label": "Button Color Type",
+                "value":this.config.buttonClass,       
+                "description": "Select the type for the button", 
+                "options":[
+                {"primary":"primary"},
+                {"secondary":"secondary"},
+                {"success":"success"},
+                {"danger":"danger"},
+                {"warning":"warning"},
+                {"info":"info"},
+                {"light":"light"},
+                {"dark":"dark"}
+                ],    
+                "type": "Select"
+              },        
+              {
+                "propertyName":"buttonSize",
+                "label": "Button Size",
+                "value":this.config.buttonSize,       
+                "description": "Select the size for the button", 
+                "options":[
+                {"md":"Medium"},
+                {"lg":"Large"},
+                {"sm":"Small"}
+                ],    
+                "type": "Select"
+              },        
+              {
+                "propertyName":"position",
+                "label": "Header Position",
+                "value":this.config.position,       
+                "description": "Select the position for the header", 
+                "options":[
+                {"left":"left"},
+                {"center":"center"},
+                {"right":"right"}
+                ],    
+                "type": "Select"
+              }, 
               {
                 "propertyName":"customCss",
                 "label": "Custom CSS",
@@ -119,8 +161,15 @@ class Button extends Base
         //render Input Group
         //===================================================================================
        
-        const divInputGroup = this.createElement("div", {"class":"input-group"});       
-
+        const divInputGroup = this.createElement("div", {"class":"d-flex"});       
+        if (config.position ==='center')
+        {
+          divInputGroup.classList.add("justify-content-center", "align-items-center")
+        }
+        else if (config.position ==='right')
+        {
+          divInputGroup.classList.add("justify-content-end", "align-items-right")
+        }
         
         //<input aria-required="true" aria-labelledby="l-epx0fbk-textField d-epx0fbk-textField" id="epx0fbk-textField" value="" spellcheck="true" placeholder="Placeholder" autocomplete="off" lang="en" class="form-control" type="text" name="data[textField]" ref="input">
        
@@ -140,8 +189,11 @@ class Button extends Base
     renderRawElement = (config, elementId)=>{   
       const propertyName = config.propertyName;
 
-      const inputEl =  this.createElement("button", {"id":`${this.name}-${elementId}`, "class":"btn btn-primary btn-md", "type":"text", "ref":"button"});
-      
+      const inputEl =  this.createElement("button", {"id":`${this.name}-${elementId}`, "class":"btn", "type":"text", "ref":"button"});
+      inputEl.classList.add(`btn-${config.buttonClass}`)
+
+      inputEl.classList.add(`btn-${config.buttonSize}`)
+
       inputEl.innerHTML = config.buttonLabel;
 
       //Must implement!
@@ -163,4 +215,3 @@ class Button extends Base
 
 
 }
-//export default Textboxv1;

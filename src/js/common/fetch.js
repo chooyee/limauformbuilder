@@ -24,4 +24,5 @@ const fetchGet = (apiUrl, fetchOptions)=>{
 	});
 
 };
+module.exports = fetchGet;
   // Use the Fetch API to make a request with the specified options

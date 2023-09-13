@@ -2,10 +2,12 @@
   "name": "limauformexp",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "source": "src/js/main.js",
+  "main": "public/js/dist/main.js",
   "scripts": {
     "start": "nodemon server.js dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devjs": "parcel",
+    "buildjs": "parcel build"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "parcel": "^2.9.3"
   }
 }

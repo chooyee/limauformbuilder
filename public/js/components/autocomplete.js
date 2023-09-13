@@ -114,3 +114,5 @@ let autocomplete = (inp, arr) => {
     });
     
   };
+
+  module.exports = autocomplete;

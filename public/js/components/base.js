@@ -286,6 +286,10 @@ class Base
 
 	}
 
+	executeButtonSave = ()=>{
+		return;
+	}
+	
     attachEditFormEvent = () =>{
         const formData = this.getEditFormJson();
         formData.tabs.forEach(tab => {
@@ -347,5 +351,3 @@ class Base
 	  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 	};
 }
-
-//export default Base;

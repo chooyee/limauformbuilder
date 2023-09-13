@@ -1,9 +1,9 @@
-class Numberbox extends Base
+class ImageUpload extends Base
 {    
 	constructor(jsonConfig) {   
 		super();     
 		this.group = "Basic"
-		this.name = "Numberbox";
+		this.name = "ImageUpload";
 		this.version = "v1";
 		if (jsonConfig!== void 0)        
 		  this.config = JSON.parse(jsonConfig);        
@@ -13,14 +13,14 @@ class Numberbox extends Base
 		//console.log(this.config)
 		let config = this.config;
 		if (config.propertyName === void 0) { config.propertyName = ''; }
-		if (config.type === void 0) { config.type = 'Numberbox'; }
-		if (config.label === void 0) { config.label = 'My Number box'; }
+		if (config.type === void 0) { config.type = 'ImageUpload'; }
+		if (config.label === void 0) { config.label = 'My Image Upload'; }
 		if (config.labelPosition === void 0) { config.labelPosition = 'Left-Left'; }
 		//if (this.isPropExists(config, 'labelPosition')) { config.labelPosition = 'top'; }
 		if (config.labelWidth === void 0) { config.labelWidth = 30; }
 		if (config.labelMargin === void 0) { config.labelMargin = 3; }
 		if (config.value === void 0) { config.value = ""; }
-		if (config.pattern === void 0) { config.pattern = "/[^0-9]/g"; }
+		if (config.case === void 0) { config.case = "none"; }
 	   
 		if (config.validation === void 0) {
 		  config.validation = {}
@@ -34,13 +34,23 @@ class Numberbox extends Base
 		};
 		
 	  
+		if (config.visibility === void 0) {
+		  config.visibility = {};
+
+		  if (config.visibility.simple === void 0) {
+			config.visibility.simple = {};
+			config.visibility.simple.target = "";
+			config.visibility.simple.value = "";
+		  };
+		};
+
 		if (config.formBuilderMode === void 0) { config.formBuilderMode = false; }
 		//this.editFormJson = this.getEditFormJson();
 	}
 
 	getEditFormJson = () =>{
 	  return {
-		"label": "Number Field Component Edit Form",
+		"label": "Text Field Component Edit Form",
 		"tabs": [
 		   {"tabLabel": "Display",
 			 "tabId":"home",
@@ -48,8 +58,8 @@ class Numberbox extends Base
 			  {
 				"propertyName":"label",
 				"label": "Label",
-				"placeholder": "My Numberbox label",
-				"description": "Enter the label for this number field", 
+				"placeholder": "My Textbox label",
+				"description": "Enter the label for this text field", 
 				"validation":{"mandatory": true, "lengthCheck": {"min": 0, "max":0}},
 				"value":this.config.label,           
 				"type": "Textbox"
@@ -69,32 +79,16 @@ class Numberbox extends Base
 			  {
 				"propertyName":"description",
 				"label": "Descriptions (Optional)",
-				"description": "Description for the number field", 
+				"description": "Description for the textbox", 
 				"type": "Textbox",
 				"value": this.config.description
 			  },
 			  {
 				"propertyName":"placeholder",
 				"label": "Placeholder (Optional)",
-				"placeholder": "Placeholder on the number field",
+				"placeholder": "Placeholder on the textbox",
 				"type": "Textbox",
 				"value": this.config.placeholder
-			  },
-			  {
-				"propertyName":"prefix",
-				"label": "Prefix (Optional)",
-				"placeholder": "Prefix",
-				"description": "Set the prefix infront of the text field, for ex: {RM} [numberbox]", 
-				"type": "Textbox",
-				"value": this.config.prefix
-			  },
-			  {
-				"propertyName":"suffix",
-				"label": "Suffix (Optional)",
-				"placeholder": "Suffix",
-				"description": "Set the prefix infront of the text field, for ex: [numberbox] {RM}", 
-				"type": "Textbox",
-				"value": this.config.suffix
 			  },
 			  {
 				"propertyName":"customCss",
@@ -117,24 +111,6 @@ class Numberbox extends Base
 				"label": "This is mandatory field?",
 				"value":this.config.validation.mandatory, 
 				"type": "Checkbox"
-			  },
-			  {
-				"propertyGroup":"validation",
-				"propertyType":"lengthCheck",
-				"propertyName":"validation-lengthCheck-min",
-				"label": "Minimum Length (Optional)",
-				"placeholder": "Minimum Length",  
-				"type": "Numberbox",
-				"value": this.config.validation.lengthCheck.min
-			  },
-			  {
-				"propertyGroup":"validation",
-				"propertyType":"lengthCheck",
-				"propertyName":"validation-lengthCheck-max",
-				"label": "Maximum Length (Optional)",
-				"placeholder": "Maximum Length",
-				"type": "Numberbox",
-				"value": this.config.validation.lengthCheck.max
 			  }
 			]
 		  },
@@ -146,18 +122,6 @@ class Numberbox extends Base
 				"propertyName":"propertyName",
 				"label": "Data Property",
 				"value": this.config.propertyName, 
-				"type": "Textbox"
-			  },
-			  {
-				"propertyName":"value",
-				"label": "Default Value",
-				"value": this.config.value, 
-				"type": "Numberbox"
-			  },
-			  {
-				"propertyName":"pattern",
-				"label": "Regex Pattern",
-				"value": this.config.pattern, 
 				"type": "Textbox"
 			  }
 			]
@@ -215,81 +179,53 @@ class Numberbox extends Base
 	}
 
 	renderRawElement = (config, elementId)=>{   
-	  const propertyName = config.propertyName;
-	  const placeholder = config.placeholder;
-	  const val = config.value;
+		const propertyName = config.propertyName;
+		const val = config.value;
 
-	  const inputEl =  this.createElement("input", {"id":`${this.name}-${elementId}`, "class":"form-control", "type":"text", "ref":"input"});
-	  inputEl.setAttribute("data-pattern", config.pattern);
-	  //Must implement!
-	  if (!this.isNullOrEmpty(config.propertyId))
-	  {
-		inputEl.setAttribute("data-id", config.propertyId);
-	  }
-
-	  if (!this.isNullOrEmpty(propertyName))
-	  {
-		inputEl.setAttribute("data-property",propertyName);
-	  }
-	  
-	  if (!this.isNullOrEmpty(val))
-	  {
-		inputEl.setAttribute("value",val);
-	  }
-
-
-	  if (!this.isNullOrEmpty(placeholder))
-	  {
-		inputEl.setAttribute("placeholder", placeholder);
-	  }
-
-	   
-	  if (this.isPropExists(config,"validation"))
-	  {
+		const inputEl =  this.createElement("input", {"id":`${this.name}-${elementId}`, "class":"form-control", "type":"file", "accept":"image/*", "ref":"input"});
 		
-		if (this.isPropExists(config.validation, "mandatory"))
+		//Must implement!
+		if (!this.isNullOrEmpty(config.propertyId))
 		{
-		  inputEl.classList.add("mandatory");
+			inputEl.setAttribute("data-id", config.propertyId);
 		}
-		if (this.isPropExists(config.validation, "lengthCheck"))
-		{
-		  
-		  if (typeof Number(config.validation.lengthCheck.min) == 'number'){
-			if (+config.validation.lengthCheck.min > 0)
-			  inputEl.setAttribute("minLength", config.validation.lengthCheck.min);
-		  }
 
-		  if (typeof Number(config.validation.lengthCheck.max) == 'number'){
+		if (!this.isNullOrEmpty(propertyName))
+		{
+			inputEl.setAttribute("data-property",propertyName);
+		}
+		
+		if (!this.isNullOrEmpty(val))
+		{
+			inputEl.setAttribute("value",val);
+		}
+
+		if (this.isPropExists(config,"validation"))
+		{
 			
-			if (+config.validation.lengthCheck.max > 0){
-			  inputEl.setAttribute("maxLength", config.validation.lengthCheck.max);
-			}
-		  }
+			if (this.isPropExists(config.validation, "mandatory"))
+			{
+			inputEl.classList.add("mandatory");
+			}      
 		}
+		
+		const divPreview = this.createElement("div",{"id":`${this.name}-${elementId}-preview`});
 
-	  }
-	   
-	  this.attachComponentEventListener(inputEl);
-	  return inputEl;
+		if (!this.isNullOrEmpty(config.image))
+		{
+			divPreview.appendChild(this.createElement("img", {"class":"img-thumbnail", "src":config.image, "ref":"img"}));
+		
+		}
+		const divGroup = this.createElement("div",{"class":"layout"});
+		divGroup.appendChild(inputEl);
+		divGroup.appendChild(divPreview);
+
+		const imageProcessor = new ImageProcessor(divPreview, inputEl);
+		imageProcessor.setDragDrop(divPreview);
+		//console.log(imageProcessor.refs.fileSelector)
+		imageProcessor.refs.fileSelector.addEventListener("change", () => imageProcessor.fileSelectorChanged());
+		return divGroup;
 	}
 
-	attachComponentEventListener=(inputEl)=>{
-		inputEl.removeEventListener("input",this.numberFuncHandler);
-		inputEl.addEventListener("input",this.numberFuncHandler);
-	}
-
-	numberFuncHandler=(event)=>{
-		event.preventDefault();
-		const currentValue = event.target.value;
-
-		// Remove all non-numeric characters from the value
-		///[^0-9]/g
-		const pattern = event.target.getAttribute("data-pattern");
-		const numericValue = currentValue.replace(eval(pattern), '');
-		//console.log(numericValue)
-		// Update the input's value with the numeric value
-		event.target.value = numericValue;
-	}
-
-
+	
 }
