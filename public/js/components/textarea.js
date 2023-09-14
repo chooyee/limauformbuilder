@@ -18,7 +18,7 @@ class Textarea extends Base
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
         if (config.rows === void 0) { config.rows = 3; }
-        if (config.case === void 0) { config.case = "none"; }
+        if (config.letterCase === void 0) { config.letterCase = "none"; }
         if (config.value === void 0) { config.value = ""; }
         if (config.required === void 0) { config.required = false; }
         config.required = config.required=='on'?true:false;
@@ -213,6 +213,19 @@ class Textarea extends Base
       }
        
       if (!this.isNullOrEmpty(val)) inputEl.innerHTML = val;
+
+      switch (config.letterCase)
+      {
+        case "upper":
+          inputEl.classList.add("text-uppercase");
+          break;
+        case "lower":
+          inputEl.classList.add("text-lowercase");
+          break;
+        case "capital":
+          inputEl.classList.add("text-capitalize");
+          break;
+      }
 
       return inputEl;
     }

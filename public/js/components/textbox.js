@@ -20,7 +20,7 @@ class Textbox extends Base
         if (config.labelWidth === void 0) { config.labelWidth = 30; }
         if (config.labelMargin === void 0) { config.labelMargin = 3; }
         if (config.value === void 0) { config.value = ""; }
-        if (config.case === void 0) { config.case = "none"; }
+        if (config.letterCase === void 0) { config.letterCase = "none"; }
        
         if (config.validation === void 0) {
           config.validation = {}
@@ -165,28 +165,6 @@ class Textbox extends Base
                 "type": "Textbox"
               }
             ]
-          },
-          {
-            "tabLabel": "Visibility",
-            "tabId":"visibility",
-            "components": [
-              {
-                "propertyName":"visibility-simple-target",
-                "label": "Visibile only when element",
-                "value": this.config.visibility.simple.target, 
-                "type": "Select",
-                "options":[],
-                "render":{
-                  "options":"all_elements_on_form"
-                }
-              },
-              {
-                "propertyName":"visibility-simple-value",
-                "label": "has the value of",
-                "value": this.config.visibility.simple.value, 
-                "type": "Textbox"
-              }
-            ]
           }
         ]
       };
@@ -243,7 +221,7 @@ class Textbox extends Base
     renderRawElement = (config, elementId)=>{   
       const propertyName = config.propertyName;
       const placeholder = config.placeholder;
-      const letterCase = config.case;    
+      const letterCase = config.letterCase;    
       const val = config.value;
 
       const inputEl =  this.createElement("input", {"id":`${this.name}-${elementId}`, "class":"form-control", "type":"text", "ref":"input"});
