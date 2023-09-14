@@ -15,7 +15,7 @@ class CardImage extends Base
 		if (config.propertyName === void 0) { config.propertyName = ''; }
 		if (config.type === void 0) { config.type = 'CardImage'; }
 		if (config.position === void 0) { config.position = 'left'; }
-		if (config.image === void 0) { config.image = "https://www.gravatar.com/avatar/HASH?d=retro"; }
+		if (config.image === void 0) { config.image = ""; }
 		if (config.letterCase === void 0) { config.letterCase = "none"; }
 		if (config.bodyText === void 0) { config.bodyText = ""; }
 		if (config.headerText === void 0) { config.headerText = ""; }
@@ -182,15 +182,15 @@ class CardImage extends Base
 			this.config.blobImageUrl = blobImageUrl;
 
 			const publicImgUrl =  await this.uploadImageToApi(blobImageUrl, "/api/v1/upload");
-			this.config.image = publicImgUrl;
+			this.config.image =  location.protocol + '//' + location.host + "/" + publicImgUrl;
 			
-			//console.log (test);
+			console.log (publicImgUrl);
 			return publicImgUrl;
 		}
 		else{
 			const img = preview.querySelector("img");
 			this.config.image = img.src
-			console.log(this.config.image)
+			//console.log(this.config.image)
 			return this.config.image;
 		}
 

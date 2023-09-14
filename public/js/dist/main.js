@@ -57,9 +57,6 @@ var curMirrorElement;
 var curZone;
 var editor = ace.edit("form-json");
 var formElementJsonConfig = [];
-const className = "Select";
-const h = new (eval(className))();
-console.log(h);
 document.addEventListener("DOMContentLoaded", function() {
     const mainContainer11 = document.querySelector('[ref="container"]');
     const mainContainerJson11 = {};
@@ -203,10 +200,8 @@ btnModalSaveEventHandler = async (domElementType, curDomElement)=>{
     config.formBuilderMode = true;
     const el = CreateInstance(domElementType, JSON.stringify(config));
     config = el.config;
-
     //Execute element custom button save event before render
     await el.executeButtonSave();
-    
     const zone = curDomElement.closest('[ref="container"]');
     //console.log(zone)
     zone.insertBefore(el.renderDomElement(), curDomElement);
