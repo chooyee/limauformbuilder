@@ -113,7 +113,7 @@ class Column extends Base
 		for (let i =0;i<config.numOfColumns;i++)
 		{
 			const colContainerId = `col-${elementId}-${i}`;
-			const col = this.createElement("div", {"class":"col","data-parent":componentId, "ref":"col"});
+			const col = this.createElement("div", {"class":"col form-column","data-parent":componentId, "ref":"col"});
 			const colDropContainer = this.createElement("div", {"id":colContainerId, "data-parent":componentId, "class":"col-drop-container builder-components","ref":"container", "data-col":i});
 			//<div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
 			//Drag and Drop a form component
