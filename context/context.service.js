@@ -4,7 +4,7 @@ class Context {
 
     constructor () {   
         const dotenv = require('dotenv');
-        const env = process.argv[2];
+        const env = process.env.NODE_ENV;
         const result = dotenv.config({ path: `./.env_${env}` });
 
         
