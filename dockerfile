@@ -1,14 +1,13 @@
-FROM node:20-alpine3.17 as builder
+FROM node:20-alpine3.17 as build-env
 
+COPY . /app
+WORKDIR /app
 
-ENV NODE_ENV=production
-WORKDIR /src
-RUN npm install
+RUN npm ci --omit=dev
+
 FROM gcr.io/distroless/nodejs20-debian11
+COPY --from=build-env /app /app
+WORKDIR /app
 
-COPY --from=builder /src /src
-
-WORKDIR /src
 EXPOSE 8080
-
-CMD ["node", "server.js", "prod"]
+CMD ["server.js", "prod"]
