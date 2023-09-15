@@ -2,8 +2,9 @@
   "name": "limauformexp",
   "version": "1.0.0",
   "description": "",
-  "source": "src/js/main.js",
-  "main": "public/js/dist/main.js",
+  "sourcejs": "src/js/main.js",
+  "mainjs": "public/js/dist/main.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js dev",
     "devjs": "parcel",

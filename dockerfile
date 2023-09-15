@@ -1,17 +1,14 @@
-FROM node:20-alpine as base
+FROM node:20-alpine3.17 as builder
+
+
+ENV NODE_ENV=production
+WORKDIR /src
+RUN npm install
+FROM gcr.io/distroless/nodejs20-debian11
+
+COPY --from=builder /src /src
 
 WORKDIR /src
-COPY package.json package-lock.json /src/
-EXPOSE 3000
+EXPOSE 8080
 
-FROM base as production
-ENV NODE_ENV=production
-RUN npm install
-COPY . /src
-CMD ["node", "bin/www"]
-
-FROM base as dev
-ENV NODE_ENV=development
-RUN npm install -g nodemon && npm install
-COPY . /src
-CMD ["nodemon", "bin/www"]
+CMD ["node", "server.js", "prod"]

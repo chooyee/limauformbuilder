@@ -1,448 +1,175 @@
 <html>
 <head>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Limau Form Builder</title>    
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Limau Form Builder</title>    
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <script src=js/bootstrap.bundle.min.js integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/src-min-noconflict/ace.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/css/ace.min.css"> -->
-    <script src="js/ace.min.js"></script>
-    <link rel="stylesheet" href="css/ace/ace.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<script src=js/bootstrap.bundle.min.js integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/src-min-noconflict/ace.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ace-builds@1.24.1/css/ace.min.css"> -->
+	<script src="js/ace.min.js"></script>
+	<link rel="stylesheet" href="css/ace/ace.css">
 </head>
 <body>
 
   
 <div class="row">
-    <div class="col-sm-8">
-      <h3 class="text-center text-muted">Form Builder</h3>
-      <div id="w92c3r-wrapper"><div id="builder"><div class="builder row formbuilder">
-    <div class="col-xs-4 col-sm-3 col-md-2 formcomponents">
-      <div role="tablist" ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="builder-sidebar-e7ep995">
-    <!-- <input placeholder="Search field(s)" ref="sidebar-search" type="search" class="form-control builder-sidebar_search"> -->
-      
-        <div ref="group-panel-basic" class="card form-builder-panel accordion-item">
-    <div id="heading-basic" class="card-header form-builder-group-header">
-      <h5 class="mb-0 mt-0 d-grid accordion-header">
-        <button ref="sidebar-anchor" aria-controls="group-basic" aria-expanded="true" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-basic" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
-          Basic
-        </button>
-      </h5>
-    </div>
-    <div ref="sidebar-group" aria-labelledby="heading-basic" data-default="true" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse  show" id="group-basic">
-      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-basic">
-      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Header" data-key="header" data-group="basic" ref="sidebar-component">
-        <i style="margin-right: 5px;" class="fa fa-card-heading bi bi-card-heading"></i>Header
-      </span>
-      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Text" data-key="text" data-group="basic" ref="sidebar-component">
-        <i style="margin-right: 5px;" class="fa fa-card-text bi bi-card-text"></i>Text
-      </span>
-      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Column" data-key="column" data-group="basic" ref="sidebar-component">
-        <i style="margin-right: 5px;" class="fa fa-columns bi bi-columns"></i>Column
-      </span>
-      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="CardImage" data-key="cardImage" data-group="basic" ref="sidebar-component">
-        <i style="margin-right: 5px;" class="fa fa-card-image bi bi-card-image"></i>Card Image
-      </span>
-      <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="ImageUpload" data-key="imageUpload" data-group="basic" ref="sidebar-component">
-        <i style="margin-right: 5px;" class="fa fa-upload bi bi-upload"></i>Image Select
-      </span>
+	<div class="col-sm-8">
+	  <h3 class="text-center text-muted">Form Builder</h3>
+	  <div id="w92c3r-wrapper"><div id="builder"><div class="builder row formbuilder">
+	<div class="col-xs-4 col-sm-3 col-md-2 formcomponents">
+	<div role="tablist" ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="builder-sidebar-e7ep995">
+	<!-- <input placeholder="Search field(s)" ref="sidebar-search" type="search" class="form-control builder-sidebar_search"> -->
+	  
+		<div ref="group-panel-basic" class="card form-builder-panel accordion-item">
+	<div id="heading-basic" class="card-header form-builder-group-header">
+		<h5 class="mb-0 mt-0 d-grid accordion-header">
+		<button ref="sidebar-anchor" aria-controls="group-basic" aria-expanded="true" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-basic" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
+			Basic
+		</button>
+		</h5>
+	</div>
+	<div ref="sidebar-group" aria-labelledby="heading-basic" data-default="true" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse  show" id="group-basic">
+		<div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-basic">
+		<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Header" data-key="header" data-group="basic" ref="sidebar-component">
+		<i style="margin-right: 5px;" class="fa fa-card-heading bi bi-card-heading"></i>Header
+		</span>
+		<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Text" data-key="text" data-group="basic" ref="sidebar-component">
+		<i style="margin-right: 5px;" class="fa fa-card-text bi bi-card-text"></i>Text
+		</span>
+		<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Column" data-key="column" data-group="basic" ref="sidebar-component">
+		<i style="margin-right: 5px;" class="fa fa-columns bi bi-columns"></i>Column
+		</span>
+		<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="CardImage" data-key="cardImage" data-group="basic" ref="sidebar-component">
+		<i style="margin-right: 5px;" class="fa fa-card-image bi bi-card-image"></i>Card Image
+		</span>
+		<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="ImageUpload" data-key="imageUpload" data-group="basic" ref="sidebar-component">
+		<i style="margin-right: 5px;" class="fa fa-upload bi bi-upload"></i>Image Select
+		</span>
 
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Textbox" data-key="textfield" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-terminal bi bi-terminal"></i>
-              
-              Text Field
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Textarea" data-key="textarea" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-font bi bi-type"></i>
-              
-              Text Area
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Numberbox" data-key="number" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-hashtag bi bi-hash"></i>
-              
-              Number
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Password" data-key="password" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-asterisk bi bi-asterisk"></i>
-              
-              Password
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Checkbox" data-key="checkbox" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-check-square bi bi-check-square"></i>
-              
-              Checkbox
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Occupation" data-key="selectboxes" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-person-workspace bi bi-person-workspace"></i>
-              
-              Occupation
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Select" data-key="select" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-th-list bi bi-menu-button-wide"></i>
-              
-              Select
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Radio" data-key="radio" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-dot-circle-o bi bi-ui-radios"></i>
-              
-              Radio
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Button" data-key="button" data-group="basic" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-stop bi bi-stop"></i>
-              
-              Button
-            </span>
-          
-          
-        
-      </div>
-    </div>
-  </div>
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent drag-copy draggable m-0" data-type="Textbox" data-key="textfield" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-terminal bi bi-terminal"></i>
+				
+				Text Field
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Textarea" data-key="textarea" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-font bi bi-type"></i>
+				
+				Text Area
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Numberbox" data-key="number" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-hashtag bi bi-hash"></i>
+				
+				Number
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Password" data-key="password" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-asterisk bi bi-asterisk"></i>
+				
+				Password
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Checkbox" data-key="checkbox" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-check-square bi bi-check-square"></i>
+				
+				Checkbox
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Occupation" data-key="selectboxes" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-person-workspace bi bi-person-workspace"></i>
+				
+				Occupation
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Select" data-key="select" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-th-list bi bi-menu-button-wide"></i>
+				
+				Select
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Radio" data-key="radio" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-dot-circle-o bi bi-ui-radios"></i>
+				
+				Radio
+			</span>
+			
+			<span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="Button" data-key="button" data-group="basic" ref="sidebar-component">
+				
+				<i style="margin-right: 5px;" class="fa fa-stop bi bi-stop"></i>
+				
+				Button
+			</span>
+			
+			
+		
+		</div>
+	</div>
+		</div>
+	  
+	</div>
   
-      
-        <div ref="group-panel-advanced" class="card form-builder-panel accordion-item">
-    <div id="heading-advanced" class="card-header form-builder-group-header">
-      <h5 class="mb-0 mt-0 d-grid accordion-header">
-        <button ref="sidebar-anchor" aria-controls="group-advanced" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-advanced" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
-          Advanced
-        </button>
-      </h5>
-    </div>
-    <div ref="sidebar-group" aria-labelledby="heading-advanced" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-advanced">
-      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-advanced">
-        
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="email" data-key="email" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-at bi bi-at"></i>
-              
-              Email
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="url" data-key="url" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-link bi bi-link"></i>
-              
-              Url
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="phoneNumber" data-key="phoneNumber" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-phone-square bi bi-phone"></i>
-              
-              Phone Number
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="tags" data-key="tags" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-tags bi bi-tags"></i>
-              
-              Tags
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="address" data-key="address" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-home bi bi-house"></i>
-              
-              Address
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="DateTimeInput" data-key="DateTimeInput" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-calendar bi bi-calendar"></i>
-              
-              Date / Time
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="day" data-key="day" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-calendar bi bi-calendar"></i>
-              
-              Day
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="time" data-key="time" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-clock-o bi bi-clock"></i>
-              
-              Time
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="currency" data-key="currency" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-usd bi bi-currency-dollar"></i>
-              
-              Currency
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="survey" data-key="survey" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-list bi bi-list"></i>
-              
-              Survey
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="signature" data-key="signature" data-group="advanced" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-pencil bi bi-pencil"></i>
-              
-              Signature
-            </span>
-          
-          
-        
-      </div>
-    </div>
-  </div>
+	</div>
+	<div ref="form" class="col-xs-8 col-sm-9 col-md-10 formarea">
+	  <div ref="component" class="component-container">    
+		<div id="drop-container" name="drop-container" ref="container" class="dropzone builder-components drop-container builder-form">
+		  <div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
+		  Drag and Drop a form component
+		  </div>
+		  
+		</div>
+	  </div>
   
-      
-        <div ref="group-panel-layout" class="card form-builder-panel accordion-item">
-    <div id="heading-layout" class="card-header form-builder-group-header">
-      <h5 class="mb-0 mt-0 d-grid accordion-header">
-        <button ref="sidebar-anchor" aria-controls="group-layout" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-layout" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
-          Layout
-        </button>
-      </h5>
-    </div>
-    <div ref="sidebar-group" aria-labelledby="heading-layout" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-layout">
-      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-layout">
-        
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="htmlelement" data-key="htmlelement" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-code bi bi-code"></i>
-              
-              HTML Element
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="content" data-key="content" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-html5 bi bi-file-richtext"></i>
-              
-              Content
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="columns" data-key="columns" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-columns bi bi-layout-three-columns"></i>
-              
-              Columns
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="fieldset" data-key="fieldset" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-th-large bi bi-grid-fill"></i>
-              
-              Field Set
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="panel" data-key="panel" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-list-alt bi bi-window"></i>
-              
-              Panel
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="table" data-key="table" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-table bi bi-table"></i>
-              
-              Table
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="tabs" data-key="tabs" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-folder-o bi bi-folder"></i>
-              
-              Tabs
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="well" data-key="well" data-group="layout" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-square-o bi bi-square"></i>
-              
-              Well
-            </span>
-          
-          
-        
-      </div>
-    </div>
-  </div>
-  
-      
-        <div ref="group-panel-data" class="card form-builder-panel accordion-item">
-    <div id="heading-data" class="card-header form-builder-group-header">
-      <h5 class="mb-0 mt-0 d-grid accordion-header">
-        <button ref="sidebar-anchor" aria-controls="group-data" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-data" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
-          Data
-        </button>
-      </h5>
-    </div>
-    <div ref="sidebar-group" aria-labelledby="heading-data" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-data">
-      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-data">
-        
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="hidden" data-key="hidden" data-group="data" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-user-secret bi bi-person-fill-slash"></i>
-              
-              Hidden
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="container" data-key="container" data-group="data" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-folder-open bi bi-folder2-open"></i>
-              
-              Container
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="datamap" data-key="datamap" data-group="data" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-th-list bi bi-menu-button-wide"></i>
-              
-              Data Map
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="datagrid" data-key="datagrid" data-group="data" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-th bi bi-grid-3x3-gap-fill"></i>
-              
-              Data Grid
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="editgrid" data-key="editgrid" data-group="data" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-tasks bi bi-view-stacked"></i>
-              
-              Edit Grid
-            </span>
-          
-          
-        
-      </div>
-    </div>
-  </div>
-  
-      
-        <div ref="group-panel-premium" class="card form-builder-panel accordion-item">
-    <div id="heading-premium" class="card-header form-builder-group-header">
-      <h5 class="mb-0 mt-0 d-grid accordion-header">
-        <button ref="sidebar-anchor" aria-controls="group-premium" aria-expanded="" data-bs-parent="#builder-sidebar-e7ep995" data-bs-target="#group-premium" data-bs-toggle="collapse" type="button" class="btn builder-group-button">
-          Premium
-        </button>
-      </h5>
-    </div>
-    <div ref="sidebar-group" aria-labelledby="heading-premium" data-default="" data-bs-parent="#builder-sidebar-e7ep995" class="accordion-collapse collapse" id="group-premium">
-      <div ref="sidebar-container" class="d-grid gap-1 no-drop p-2 w-100" id="group-container-premium">
-        
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="recaptcha" data-key="recaptcha" data-group="premium" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-refresh bi bi-arrow-repeat"></i>
-              
-              reCAPTCHA
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="file" data-key="file" data-group="premium" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-file bi bi-file"></i>
-              
-              File
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="form" data-key="form" data-group="premium" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-wpforms bi bi-window-stack"></i>
-              
-              Nested Form
-            </span>
-          
-            <span tabindex="0" class="btn btn-outline-primary btn-sm formcomponent draggable m-0" data-type="custom" data-key="unknown" data-group="premium" ref="sidebar-component">
-              
-                <i style="margin-right: 5px;" class="fa fa-cubes bi bi-boxes"></i>
-              
-              Custom
-            </span>
-          
-          
-        
-      </div>
-    </div>
-  </div>
-  
-      
-  </div>
-  
-    </div>
-    <div ref="form" class="col-xs-8 col-sm-9 col-md-10 formarea">
-      <div ref="component" class="component-container">    
-        <div id="drop-container" name="drop-container" ref="container" class="dropzone builder-components drop-container builder-form">
-          <div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
-          Drag and Drop a form component
-          </div>
-          
-        </div>
-      </div>
-  
-    </div>
+	</div>
   </div>
   </div>
   
   
 </div>
-    </div>
-    <div class="col-sm-4">
-      <h3 class="text-center text-muted">Form JSON</h3>
-      <div id="form-json" style="height: 500px" class=" ace_editor ace_hidpi ace-tm"></div>
+	</div>
+	<div class="col-sm-4">
+	  <h3 class="text-center text-muted">Form JSON</h3>
+	  <div id="form-json" style="height: 500px" class=" ace_editor ace_hidpi ace-tm"></div>
   </div>
 
   <!-- <footer class="footer bg-dark">
-    <div class="container py-3">
-      <span class="text-light">Bootstrap 4 fixed footer content here.</span>
-    </div>
+	<div class="container py-3">
+	  <span class="text-light">Bootstrap 4 fixed footer content here.</span>
+	</div>
   </footer> -->
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
-          <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button id="btnRemove" ref="modal-remove" type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
-          <button id="btnCancel" ref="modal-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button id="btnSave" type="button" class="btn btn-primary">Save</button>
-        </div>
-      </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
+		  <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true"></span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  ...
+		</div>
+		<div class="modal-footer">
+		  <button id="btnRemove" ref="modal-remove" type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
+		  <button id="btnCancel" ref="modal-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+		</div>
+	  </div>
+	</div>
   </div>
   <!-- <script src="js/components/imageProcessor.js"></script>
   <script src="js/components/base.js"></script>

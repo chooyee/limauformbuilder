@@ -1,0 +1,18 @@
+FROM node:20-alpine3.17 as base
+
+WORKDIR /src
+COPY . .
+
+FROM base as production
+ENV NODE_ENV=production
+RUN npm install
+COPY . /src
+CMD ["node", "server.js", "prod"]
+
+FROM base as dev
+ENV NODE_ENV=development
+RUN npm install -g nodemon && npm install
+COPY . /src
+CMD ["nodemon", "server.js", "dev"]
+
+EXPOSE 8080
