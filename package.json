@@ -6,7 +6,7 @@
   "mainjs": "public/js/dist/main.js",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js dev",
+    "start": "set NODE_ENV=dev&&nodemon server.js",
     "devjs": "parcel",
     "buildjs": "parcel build"
   },
