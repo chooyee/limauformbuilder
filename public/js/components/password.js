@@ -61,7 +61,8 @@ class Password extends Base
                 "description": "Set the position of the label", 
                 "options":[
                   {"Top":"Top"},
-                  {"Left-Left":"Left"}
+                  {"Left-Left":"Left"},
+                  {"None":"None"}
                 ],
                 "value": this.config.labelPosition,           
                 "type": "Select"
@@ -155,10 +156,14 @@ class Password extends Base
         }
         
         //<input aria-required="true" aria-labelledby="l-epx0fbk-textField d-epx0fbk-textField" id="epx0fbk-textField" value="" spellcheck="true" placeholder="Placeholder" autocomplete="off" lang="en" class="form-control" type="text" name="data[textField]" ref="input">
-       
+        const divFormFloat = this.createElement("div", {"class":"form-floating"}); 
+        divInputGroup.appendChild(divFormFloat);
         const inputEl = this.renderRawElement(config, elementId);
         
-        divInputGroup.appendChild(inputEl);
+        divFormFloat.appendChild(inputEl);
+        const label = this.createElement("label",{"for":`${this.name}-${elementId}`});
+        label.innerHTML = config.label;
+        divFormFloat.appendChild(label);
 
         if (!this.isNullOrEmpty(suffix))
         {
@@ -189,7 +194,7 @@ class Password extends Base
       const propertyName = config.propertyName;
       const val = config.value;
 
-      const inputEl =  this.createElement("input", {"id":`${this.name}-${elementId}`, "class":"form-control", "type":"password", "ref":"input"});
+      const inputEl =  this.createElement("input", {"placeholder":config.label,"id":`${this.name}-${elementId}`, "class":"form-control", "type":"password", "ref":"input"});
       
       //Must implement!
       if (!this.isNullOrEmpty(config.propertyId))

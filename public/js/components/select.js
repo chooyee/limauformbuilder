@@ -58,7 +58,8 @@ class Select extends Base
 				  "description": "Set the position of the label", 
 				  "options":[
 					{"Top":"Top"},
-					{"Left-Left":"Left"}
+					{"Left-Left":"Left"},
+					{"None":"None"}
 				  ],
 				  "value": this.config.labelPosition,           
 				  "type": "Select"
@@ -129,9 +130,14 @@ class Select extends Base
 	   
 		const divInputGroup = this.createElement("div", {"class":"input-group"});       
 
+		const divFormFloat = this.createElement("div", {"class":"form-floating"}); 
+		divInputGroup.appendChild(divFormFloat);
 		const inputEl = this.renderRawElement(config, elementId);
-	   
-		divInputGroup.appendChild(inputEl);
+
+		divFormFloat.appendChild(inputEl);
+		const label = this.createElement("label",{"for":`${this.name}-${elementId}`});
+		label.innerHTML = config.label;
+		divFormFloat.appendChild(label);
 	  
 		const divElement = this.createElement("div", {"ref":"element"});
 		divElement.appendChild(divInputGroup);
@@ -156,7 +162,7 @@ class Select extends Base
 		const placeholder = config.placeholder;
 		let options = config.options;
 		const defaultValue = config.value;
-		const inputEl = this.createElement("select", {"data-property":propertyName,"id":inputElementId, "class":"form-control", "type":"text", "ref":"input"});
+		const inputEl = this.createElement("select", {"placeholder":config.label,"data-property":propertyName,"id":inputElementId, "class":"form-control", "type":"text", "ref":"input"});
 		
 		if (!this.isNullOrEmpty(config.propertyId))
 		{
