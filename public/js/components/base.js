@@ -153,7 +153,7 @@ class Base
 	  	const mainElement = this.renderElement(config, elementId);
 
 		//label position
-		if (!this.isNullOrEmpty(config.label)){
+		if ((!this.isNullOrEmpty(config.label)) && (config.labelPosition.toLowerCase()!=='none')){
 			const label = this.renderLabel(elementId, config.label);
 			
 			if (this.isPropExists(config, "tooltip"))
@@ -182,6 +182,8 @@ class Base
 			}
 		}
 		else{
+			console.log("in")
+			console.log(mainElement)
 			componentDiv.appendChild(mainElement);
 		}
 	  

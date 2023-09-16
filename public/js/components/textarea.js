@@ -62,7 +62,8 @@ class Textarea extends Base
                 "description": "Set the position of the label", 
                 "options":[
                   {"Top":"Top"},
-                  {"Left-Left":"Left"}
+                  {"Left-Left":"Left"},
+                  {"None":"None"}
                 ],
                 "value": this.config.labelPosition,           
                 "type": "Select"
@@ -154,9 +155,14 @@ class Textarea extends Base
        
         const divInputGroup = this.createElement("div", {"class":"input-group"});       
 
+        const divFormFloat = this.createElement("div", {"class":"form-floating"}); 
+		    divInputGroup.appendChild(divFormFloat);
         const inputEl = this.renderRawElement(config, elementId);
-        
-        divInputGroup.appendChild(inputEl);
+
+        divFormFloat.appendChild(inputEl);
+        const label = this.createElement("label",{"for":`${this.name}-${elementId}`});
+        label.innerHTML = config.label;
+        divFormFloat.appendChild(label);
 
         const divElement = this.createElement("div", {"ref":"element"});
         divElement.appendChild(divInputGroup);
@@ -179,7 +185,7 @@ class Textarea extends Base
       const propertyName = config.propertyName;
       const val = config.value;
       const rows = config.rows;
-      const inputEl =  this.createElement("textarea", {"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"form-control", "type":"textarea", "rows":rows, "ref":"input"});
+      const inputEl =  this.createElement("textarea", {"style":"height:100%","placeholder":config.label,"data-property":propertyName,"id":`${this.name}-${elementId}`, "class":"form-control", "type":"textarea", "rows":rows, "ref":"input"});
       
       if (!this.isNullOrEmpty(config.propertyId))
       {
