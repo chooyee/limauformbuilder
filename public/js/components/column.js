@@ -124,7 +124,7 @@ class Column extends Base
 			col.appendChild(colDropContainer);
 			row.appendChild(col);
 
-			config.columns.push({"components":[]});
+			config.columns.push({"element-type":"container","components":[]});
 		}
 		
 		container.appendChild(row);
