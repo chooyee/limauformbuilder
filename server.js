@@ -6,6 +6,7 @@ const context = require('./context/context.service');
 const cors = require("cors");
 const multer  = require('multer')
 const fs = require('fs');
+const { prototype } = require('events');
 const app = express();
 let server = http.createServer(app)
 let io = socketIO(server)
@@ -83,8 +84,13 @@ app.post('/api/v1/saveformjson', (req, res) => {
         }     
         console.log("JSON file has been saved.");
     });
+    let protocol = req.protocol;
+    if (context.Environment==='prod')
+    {
+        prototype = "https";
+    }
     io.emit('newJson', {
-        json: `${req.protocol}://${req.get('host')}/json/form.json`,
+        json: `${protocol}://${req.get('host')}/json/form.json`,
         createdAt:Date.now()
      });
     res.status(200).json({
