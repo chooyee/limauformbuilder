@@ -182,8 +182,8 @@ class Base
 			}
 		}
 		else{
-			console.log("in")
-			console.log(mainElement)
+			// console.log("in")
+			// console.log(mainElement)
 			componentDiv.appendChild(mainElement);
 		}
 	  

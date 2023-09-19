@@ -1,9 +1,14 @@
 const express = require('express');
+const socketIO = require('socket.io');
+const http = require('http')
 const path = require('path');
 const context = require('./context/context.service');
 const cors = require("cors");
 const multer  = require('multer')
+const fs = require('fs');
 const app = express();
+let server = http.createServer(app)
+let io = socketIO(server)
 
 var corsOptions = {
     origin: "http://localhost:3000"
@@ -14,7 +19,8 @@ if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true // serve secure cookies
 }
-     
+
+app.use(express.json());
 app.use(cors(corsOptions));
 app.set('view engine', 'ejs');
 
@@ -43,22 +49,65 @@ var upload = multer({
     limits: { fileSize: maxSize }
 }); 
 
+// make connection with user from server side
+io.on('connection', (socket)=>{
+    console.log('New user connected');
+     //emit message from server to user
+    socket.emit('newMessage', {
+       from:'jen@server',
+       text:'Hello stranger',
+       createdAt:Date.now()
+    });
+   
+    // listen for message from user
+    socket.on('createMessage', (newMessage)=>{
+        console.log('newMessage', newMessage);
+    });
+   
+    // when server disconnects from user
+    socket.on('disconnect', ()=>{
+        console.log('disconnected from user');
+    });
+});
+
 app.get('/', (req, res) => res.render('home'));
+
+app.get('/form', (req, res) => res.render('form'));
+
+app.post('/api/v1/saveformjson', (req, res) => {
+    console.log(req.body);
+    fs.writeFile("./public/json/form.json", JSON.stringify(req.body), 'utf8', function (err) {
+        if (err) {
+            console.log("An error occured while writing JSON Object to File.");
+            return console.log(err);
+        }     
+        console.log("JSON file has been saved.");
+    });
+    io.emit('newJson', {
+        json: `${req.protocol}://${req.get('host')}/json/form.json`,
+        createdAt:Date.now()
+     });
+    res.status(200).json({
+        status: "success",
+        "filename":"/json/form.json",
+        message: "Json saved successfully!!",
+    });
+});
 
 app.post('/api/v1/upload', upload.single('image'), async (req, res)=>{
     // const newFile = await File.create({
     //     name: req.file.filename,
     //   });
-      res.status(200).json({
+    res.status(200).json({
         status: "success",
         img: "uploads/" + req.file.filename,
         message: "Image uploaded successfully!!",
-      });
+    });
    
 });
 
 //app.listen(process.env.PORT || 3000, () => console.log(`Listening on port ${process.env.PORT}!`));
 const PORT = context.ExpressPort || 3000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });

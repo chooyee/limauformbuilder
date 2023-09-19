@@ -1,5 +1,3 @@
-const fetchGet = require('./common/fetch'); 
-
 const modalBox = document.getElementById("myModal"); 
 const modalTitle = document.getElementById("modalLongTitle"); 
 const modalBody = document.querySelector(".modal-body");  
@@ -42,10 +40,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		const apiEndpoint = "/api/v1/saveformjson"
 		const formData = new FormData();
 		
-		return fetch(apiEndpoint, {
-			method: "POST",
+		const response =  fetch(apiEndpoint, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
 			body: jsonForm,
-		})
+		})		
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 		.then((data) => {
 			//console.log("Image uploaded successfully:", data);
-			return data.img;
+			alert(data.message);
 		})
 		.catch((error) => {
 			console.error("Error uploading image:", error);

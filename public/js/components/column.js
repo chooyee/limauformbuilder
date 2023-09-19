@@ -118,9 +118,12 @@ class Column extends Base
 			//<div data-position="0" data-noattach="true" role="alert" style="text-align:center;" class="builder-component drag-and-drop-alert alert alert-info no-drop">
 			//Drag and Drop a form component
 			//</div>
-			const div = this.createElement("div",{"data-position":"0", "data-noattach":"true", "role":"alert", "style":"text-align:center;", "class":"builder-component drag-and-drop-alert alert alert-info no-drop"})
-			div.innerHTML = "Drag and Drop a form component";
-			colDropContainer.appendChild(div);
+
+      if (config.formBuilderMode){
+        const div = this.createElement("div",{"data-position":"0", "data-noattach":"true", "role":"alert", "style":"text-align:center;", "class":"builder-component drag-and-drop-alert alert alert-info no-drop"})
+        div.innerHTML = "Drag and Drop a form component";
+        colDropContainer.appendChild(div);
+      }
 			col.appendChild(colDropContainer);
 			row.appendChild(col);
 

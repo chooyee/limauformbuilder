@@ -46,6 +46,8 @@ const editModalBox = new bootstrap.Modal(modalBox);
 const btnRemove = document.getElementById("btnRemove");
 const btnCancel = document.getElementById("btnCancel");
 const btnSave = document.getElementById("btnSave");
+const btnSaveFormBuilder = document.getElementById("btnSaveFormBuilder");
+const btnResetFormBuilder = document.getElementById("btnResetFormBuilder");
 //const nodropElements = document.querySelectorAll(".no-drop");
 const draggables = [
     ...document.querySelectorAll(".draggable")
@@ -71,6 +73,12 @@ document.addEventListener("DOMContentLoaded", function() {
     editor.session.setMode("ace/mode/json");
     editor.session.setUseWrapMode(true);
     editor.setHighlightActiveLine(false);
+    btnSaveFormBuilder.addEventListener("click", (e11)=>{
+        e11.preventDefault();
+        const jsonForm11 = editor.getValue();
+        console.log(typeof jsonForm11);
+        console.log(jsonForm11);
+    });
     modalBox.addEventListener("hidden.bs.modal", function(event11) {
         // do something...
         const _component_edit_mode11 = document.querySelector(".modal-edit-mode");
@@ -120,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //curZone = zone;
             elementDropped(zone11, e11);
         });
-    });
+    }); //end dropzones
 });
 //=========================================================================
 //Event Listener Handler
