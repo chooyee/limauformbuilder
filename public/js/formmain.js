@@ -22,10 +22,10 @@ socket.on('newJson', async function(message){
 });
 
 // emits message from user side
-socket.emit('createMessage', {
-to:'john@ds',
-text:'what kjkljd'
-});
+// socket.emit('createMessage', {
+//     to:'john@ds',
+//     text:'what kjkljd'
+// });
 
 // when disconnected from server
 socket.on('disconnect', function(){
@@ -48,6 +48,13 @@ const fetchJson = async (jsonUri)=>{
         return response.json(); // You can handle the API response here
     })   
     .catch((error) => {
-        console.error("Error uploading image:", error);
+        console.error("Error fetch json:", error);
     });
 }
+
+document.addEventListener('DOMContentLoaded', async function () {
+    const defaultJson = location.protocol + '//' + location.host + "/json/form.json"; 
+    const jsonForm = await fetchJson(defaultJson);
+    const container = document.querySelector(".container");
+    renderForm(container, jsonForm);
+});

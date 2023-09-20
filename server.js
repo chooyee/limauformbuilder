@@ -84,11 +84,14 @@ app.post('/api/v1/saveformjson', (req, res) => {
         }     
         console.log("JSON file has been saved.");
     });
+
     let protocol = req.protocol;
-    if (context.Environment==='prod')
+    console.log("Environment:" + context.Environment)
+    if (context.Environment==='production')
     {
-        prototype = "https";
+        protocol = "https";
     }
+
     io.emit('newJson', {
         json: `${protocol}://${req.get('host')}/json/form.json`,
         createdAt:Date.now()

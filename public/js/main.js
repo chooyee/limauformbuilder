@@ -8,7 +8,6 @@ const btnCancel = document.getElementById("btnCancel");
 const btnSave = document.getElementById("btnSave"); 
 const btnSaveFormBuilder  = document.getElementById("btnSaveFormBuilder");
 const btnResetFormBuilder  = document.getElementById("btnResetFormBuilder");
-//const nodropElements = document.querySelectorAll(".no-drop");
 const draggables = [...document.querySelectorAll(".draggable")];
 const dropzones = [...document.querySelectorAll(".dropzone")];
 
@@ -35,12 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	btnSaveFormBuilder.addEventListener('click',(e)=>{
 		e.preventDefault();
-		const jsonForm = editor.getValue();
-		
-		const apiEndpoint = "/api/v1/saveformjson"
-		const formData = new FormData();
-		
-		const response =  fetch(apiEndpoint, {
+		const jsonForm = editor.getValue();		
+		const apiEndpoint = "/api/v1/saveformjson";		
+		fetch(apiEndpoint, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -51,16 +47,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-			//console.log("uploading image");
+			
 			return response.json(); // You can handle the API response here
 		})
 		.then((data) => {
-			//console.log("Image uploaded successfully:", data);
+			
 			alert(data.message);
 		})
 		.catch((error) => {
-			console.error("Error uploading image:", error);
+			console.error("Error:", error);
+			alert("Error: " + error);
 		});
+	})
+
+	btnResetFormBuilder.addEventListener('click',(e)=>{
+		e.preventDefault();
+		mainContainer.innerHTML = "";
+		refreshEditor();
 	})
 
 	modalBox.addEventListener('hidden.bs.modal', function (event) {
@@ -165,8 +168,7 @@ draggableHandler=(draggable)=>
 }
 
 dragComponentEventListeners=(el)=>
-{      
-  //builderElementDragHandler(document.getElementById(el.id));
+{       
 
   if (el.getAttribute("ref")==='dragComponent')
   {
@@ -230,12 +232,9 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
 		  }         
 	  }
 
-	  //currentObj = element.value;
-	  //eval("config." + propNameBuilder.join(".") + "='" + element.value + "'");
-	  //console.log(`config.${propNameBuilder.join(".")} = '${element.value}'`);
-	  eval(`config.${propNameBuilder.join(".")} = '${element.value}'`);
 	  
-	  //console.log(config);
+	  eval(`config.${propNameBuilder.join(".")} = '${element.value}'`);
+	
 	}
 	else{
 	  //currentObj
@@ -255,7 +254,7 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
   await el.executeButtonSave();
 
   const zone = curDomElement.closest('[ref="container"]');
-  //console.log(zone)
+  
   zone.insertBefore(el.renderDomElement(), curDomElement);      
   zone.removeChild(curDomElement);
  
@@ -269,6 +268,9 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
 
   const newDomEl = document.getElementById(el.elementId)
   config["element-parent"] = newDomEl.closest('[ref="container"]').id;
+
+  document.getElementById("component-" + el.elementId).setAttribute("data-container", newDomEl.closest('[ref="container"]').id);
+
   formElementJsonConfig.push(config);
 
   //console.log(formElementJsonConfig)
@@ -280,11 +282,8 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
 }
 
 dropZoneDragoverEventHandler=(zone, e)=>{
-  //console.log(zone)
   e.preventDefault();
   let _mirror = document.querySelector(".drag-mirror");  
-  // console.log("dragover")
-  // console.log(_mirror)
   if (!_mirror){     
 
 	//e,target is drop container
@@ -293,7 +292,6 @@ dropZoneDragoverEventHandler=(zone, e)=>{
 	_mirror = targetEl.cloneNode(true);
 	_mirror.classList.add("drag-mirror");
 	_mirror.classList.remove("drag-transit");
-	// zone.appendChild(draggable);
 	const y = event.clientY;
 	const x = event.clientX;
 	const item = getReference(zone, _mirror, x,y);
@@ -301,7 +299,6 @@ dropZoneDragoverEventHandler=(zone, e)=>{
 	curMirrorElement = item;
 	zone.insertBefore(_mirror, item);
 	curZone=zone;
-	//if (targetEl.getAttribute("ref") ==='dragComponent') {targetEl.remove();}
   }
 }
 
@@ -339,15 +336,14 @@ elementDropped=(zone, e)=>{
 	  editModalBox.show();     
 	}
 	else{
-	  const element = document.querySelector(`#${_mirror.id}:not(.drag-mirror)`);
-	  //console.log(element)
-	  const dropZone = _mirror.closest('[ref="container"]');
-	  dropZone.insertBefore(element, _mirror);
-	  _mirror.remove();
-	  // //console.log(element)
-	  // _mirror.classList.remove("drag-mirror");
-	  // element.remove();
-	  // dragComponentEventListeners(_mirror)
+		const element = document.querySelector(`#${_mirror.id}:not(.drag-mirror)`);
+		const dropZone = _mirror.closest('[ref="container"]');	
+
+		console.log(dropZone)		
+		dropZone.insertBefore(element, _mirror);
+		document.getElementById("component-" + element.id).setAttribute("data-container",dropZone.id);	
+		
+		_mirror.remove();
 	}
 	refreshEditor();
   }
@@ -360,7 +356,6 @@ elementDropped=(zone, e)=>{
 function getReference (dropTarget, target, x, y) {
   const horizontal = false;
   var reference = outside();
-  //console.log(reference)
   return reference;
 
   function outside () { // slower, but able to figure out any position
@@ -396,15 +391,13 @@ function removeJsonElement(jsonComponent, elementId) {
 	  } else {
 		if (com["element-id"] === elementId) {
 		  jsonComponent.splice(i, 1);
-		  // console.log("removeJsonElement- remove")
-		  // console.log(jsonComponent)
+		 
 		  i--; // Decrement i to account for the removed element
 		}
 	  }
 	}
   }
-  // console.log("removeJsonElement- final")
-  // console.log(jsonComponent)
+ 
   return jsonComponent;
 }
 
@@ -430,53 +423,50 @@ function refreshEditor()
   formElementJsonRep.components = getAllChildElementsRecursive(mainContainer);
   editor.setValue(JSON.stringify(formElementJsonRep, null, '\t'));
 
-  //console.log(formElementJsonConfig)
 }
 
 function getAllChildElementsRecursive(parentElement, result = []) {
-  var children = parentElement.children;
-  //var children = parentElement.querySelectorAll(".builder-component,.drag-container");
-  for (let i = 0; i < children.length; i++) {
+	const childComponents = parentElement.querySelectorAll(`[data-container="${parentElement.id}"][ref="component"]`);
+	console.log(parentElement)
+	console.log(`[data-container="${parentElement.id}"][ref="component"]`)
+	console.log(childComponents);
+
+	for (let i = 0; i < childComponents.length; i++) {
+		const domComponent = childComponents[i];		
 	
-	const domComponent = children[i].querySelector('[ref="component"]');
-	if (domComponent){    
-	  //console.log(domComponent.id)   
-	  const jsonComponent = getFormElementJsonConfig(domComponent.id);
-	   
-	  if (jsonComponent["element-type"]==="Column")
-	  {
-		result.push(jsonComponent);
-		const elementId = domComponent.id.split("-")[1];
-		const query = `[ref="col"][data-parent="Column-${elementId}"]`;
-		//console.log(t)
-		const cols = domComponent.querySelectorAll(query); 
-		   
-		let colNumber = 0;
-		 
-		cols.forEach((col)=>{                
-		  jsonComponent["columns"][colNumber]["components"]=[];
-		  getAllChildElementsRecursive(col, jsonComponent["columns"][colNumber]["components"]);              
-		  colNumber++;
-		})            
-	  }
-	  else
-	  {
-		result.push(jsonComponent);
-	  }
-	}        
-	
-  }
+		const jsonComponent = getFormElementJsonConfig(domComponent.id);
+		
+		if (jsonComponent["element-type"]==="Column")
+		{
+			result.push(jsonComponent);
+			const elementId = domComponent.id.split("-")[1];
+			const cols = domComponent.querySelectorAll(`[ref="container"][data-parent="Column-${elementId}"]`); 
+				
+			let colNumber = 0;
+				
+			cols.forEach((col)=>{                
+				jsonComponent["columns"][colNumber]["components"]=[];
+				getAllChildElementsRecursive(col, jsonComponent["columns"][colNumber]["components"]);              
+				colNumber++;
+			})            
+		}
+		else
+		{
+			result.push(jsonComponent);
+		}
+		      
+	}
   
-  return result;
+  	return result;
 }
 
 var show = function (elem) {
-  elem.style.display = 'block';
+  	if (elem){elem.style.display = 'block';}
 };
 
 // Hide an element
 var hide = function (elem) {
-  elem.style.display = 'none';
+	if (elem){elem.style.display = 'none';}
 };
 isNullOrEmpty=function (value) {
   return value === null || value === undefined || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0);
