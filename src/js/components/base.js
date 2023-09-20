@@ -3,10 +3,9 @@ class Base
 	constructor() {        
 	   this.builderEditComponents = {};
 	   this.elementId =  this.getShortUUID();
-	   //this.editFormJson = this.getEditFormJson();
 	}
 
-	Test = ()=>{
+	Test(){
 	  const objConfig = {}; 
 	  objConfig.group = this.group;
 	  objConfig.name = this.name;
@@ -84,7 +83,7 @@ class Base
 		}, 2000); // Adjust the delay as needed
 	}
 
-	isPropExists =(obj, propName) =>{
+	isPropExists(obj, propName){
 	  return (obj.hasOwnProperty(propName) && obj[propName]!==null && obj[propName]!==undefined)
 	}
 
@@ -92,7 +91,7 @@ class Base
 	  return value === null || value === undefined || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0);
 	}
 
-	renderBuilderEditComponent = ()=>{        
+	renderBuilderEditComponent(){        
 
 	  // return `<div data-noattach="true" class="component-btn-group">
 	  //   <div ref="removeComponent" class="btn btn-xxs btn-danger component-settings-button component-settings-button-remove" tabindex="-1" aria-label="Remove button. Click to remove component from the form" role="button">
@@ -118,16 +117,16 @@ class Base
 	}
 
 	
-	getBuilderEditComponent = (btnType)=>{
+	getBuilderEditComponent(btnType){
 	  return this.builderEditComponents[btnType];
 	}
    
-	trueTypeOf =  (obj)=> {
+	trueTypeOf(obj){
 	  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 	};
 
 
-	renderDomElement = ()=>{
+	renderDomElement(){
 		let config = this.config;
 
 		const elementId = this.elementId;
@@ -201,7 +200,7 @@ class Base
 	  	return div;
 	}  
 
-	renderLabel = (elementId, labelText) =>{
+	renderLabel(elementId, labelText){
 	  const label = this.createElement('label');
 	  const labelId = `label-${elementId}`;
 	  const targetElement = `${this.name}-${elementId}`;
@@ -288,11 +287,11 @@ class Base
 
 	}
 
-	executeButtonSave = ()=>{
+	executeButtonSave(){
 		return;
 	}
 	
-    attachEditFormEvent = () =>{
+    attachEditFormEvent(){
         const formData = this.getEditFormJson();
         formData.tabs.forEach(tab => {
            
@@ -311,7 +310,7 @@ class Base
       
     }
     
-    renderTabHeader=(tabId, tabLabel, active)=>{
+    renderTabHeader(tabId, tabLabel, active){
         let activeStr ="";
         if (active)
         {

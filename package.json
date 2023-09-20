@@ -7,8 +7,7 @@
   "main": "server.js",
   "scripts": {
     "start": "set NODE_ENV=dev&&nodemon server.js",
-    "devjs": "parcel",
-    "buildjs": "parcel build"
+    "gulp": "gulp jsBundle"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +24,10 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
     "nodemon": "^2.0.6",
     "parcel": "^2.9.3"
   }

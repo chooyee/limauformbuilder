@@ -88,14 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 
 	  		const _component_edit_mode = document.querySelector(".modal-edit-mode");  
-			//console.log(_component_edit_mode)
 			if (_component_edit_mode){
 				const buttonRef = e.target.getAttribute("ref");
 				if (buttonRef=='modal-remove')
 				{
-				//curZone.removeChild(_component_edit_mode);
-				_component_edit_mode.remove();
-				
+					_component_edit_mode.remove();				
 				}
 			}
 	  		editModalBox.hide();
@@ -130,8 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 
 		zone.addEventListener("drop", (e) => {
-			console.log("drop");
-			//curZone = zone;
 			elementDropped(zone, e);
 		});
   	});//end dropzones
@@ -146,8 +141,6 @@ draggableHandler=(draggable)=>
   draggable.setAttribute('draggable', true);
 
   draggable.addEventListener("dragstart", (e) => {
-	console.log("dragstart");
-	console.log(e.target);
 	if (e.target.getAttribute("ref")==='sidebar-component')
 	{
 	  draggable.classList.add("drag-transit");        
@@ -159,8 +152,6 @@ draggableHandler=(draggable)=>
   });
 
   draggable.addEventListener("dragend", (e) => {
-	console.log("dragend");
-	//console.log(e.target);
 	draggable.classList.remove("drag-transit", "drag-highlight");
 	elementDropped(e);
 	
@@ -185,7 +176,6 @@ becRemoveEventHandler=(e)=>{
   const thisEl = e.target.closest('div.builder-component');
   thisEl.remove();
   formElementJsonConfig = removeJsonElement(formElementJsonConfig, "component-" + thisEl.id);
-  //console.log(formElementJsonConfig);
   refreshEditor();
 }
 
@@ -241,10 +231,8 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
 	  config[propNameBuilder[0]] = element.value;
 	}
    
-	//console.log(element.type + ":" + element.value );
   }
 
-  //console.log(config)
   config.formBuilderMode = true;
 		
   const el =  CreateInstance(domElementType, JSON.stringify(config)); 
@@ -273,7 +261,6 @@ btnModalSaveEventHandler=async (domElementType, curDomElement)=>{
 
   formElementJsonConfig.push(config);
 
-  //console.log(formElementJsonConfig)
   dragComponentEventListeners(newDomEl);
 
   refreshEditor();
@@ -304,7 +291,6 @@ dropZoneDragoverEventHandler=(zone, e)=>{
 
 dropZoneDragleaveEventHandler=(zone, e)=>{
   e.preventDefault();
-  console.log("dragleave");
   const _mirror = document.querySelector(".drag-mirror");  
   if (_mirror){   
 	const y = event.clientY;
@@ -314,7 +300,6 @@ dropZoneDragleaveEventHandler=(zone, e)=>{
 	{
 	  curMirrorElement = "";          
 	  _mirror.remove();
-	  //zone.removeChild(_mirror);
 	}
   }
 }
@@ -338,8 +323,6 @@ elementDropped=(zone, e)=>{
 	else{
 		const element = document.querySelector(`#${_mirror.id}:not(.drag-mirror)`);
 		const dropZone = _mirror.closest('[ref="container"]');	
-
-		console.log(dropZone)		
 		dropZone.insertBefore(element, _mirror);
 		document.getElementById("component-" + element.id).setAttribute("data-container",dropZone.id);	
 		
@@ -380,7 +363,6 @@ function CreateInstance(classNameString, json)
 }
 
 function removeJsonElement(jsonComponent, elementId) {
-  //console.log(elementId)
   if (Array.isArray(jsonComponent)) {
 	for (let i = 0; i < jsonComponent.length; i++) {
 	  const com = jsonComponent[i];
@@ -427,10 +409,7 @@ function refreshEditor()
 
 function getAllChildElementsRecursive(parentElement, result = []) {
 	const childComponents = parentElement.querySelectorAll(`[data-container="${parentElement.id}"][ref="component"]`);
-	console.log(parentElement)
-	console.log(`[data-container="${parentElement.id}"][ref="component"]`)
-	console.log(childComponents);
-
+	
 	for (let i = 0; i < childComponents.length; i++) {
 		const domComponent = childComponents[i];		
 	
